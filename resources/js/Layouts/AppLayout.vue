@@ -24,20 +24,26 @@
                   Dashboard
                 </jet-nav-link>
                 <jet-nav-link
-                  :href="route('dashboard')"
-                  :active="route().current('dashboard')"
+                  :href="route('tours.index')"
+                  :active="route().current('tours.index')"
                 >
                   Tours
                 </jet-nav-link>
                 <jet-nav-link
-                  :href="route('dashboard')"
-                  :active="route().current('dashboard')"
+                  :href="route('packages.index')"
+                  :active="route().current('packages.index')"
                 >
-                  Booking
+                  Packages
                 </jet-nav-link>
                 <jet-nav-link
-                  :href="route('dashboard')"
-                  :active="route().current('dashboard')"
+                  :href="route('booking.index')"
+                  :active="route().current('booking.index')"
+                >
+                  Bookings
+                </jet-nav-link>
+                <jet-nav-link
+                  :href="route('enqueries.index')"
+                  :active="route().current('enqueries.index')"
                 >
                   Enqueries
                 </jet-nav-link>
@@ -228,6 +234,9 @@
 
                     <jet-dropdown-link :href="route('profile.show')">
                       Profile
+                    </jet-dropdown-link>
+                    <jet-dropdown-link :href="route('profile.show')">
+                      Settings
                     </jet-dropdown-link>
 
                     <jet-dropdown-link

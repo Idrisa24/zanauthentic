@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tour;
+use Inertia\Inertia;
 use Illuminate\Http\Request;
 
 class TourController extends Controller
@@ -13,6 +14,11 @@ class TourController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+    {
+        return Inertia::render('Tours/Index');
+    }
+    
+    public function home_tours()
     {
         return Inertia::render('Tours/Index');
     }

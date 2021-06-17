@@ -10,29 +10,28 @@ class PagesController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Welcome', [
-            'canLogin' => Route::has('login'),
-            'canRegister' => Route::has('register'),
-        ]);
+        return Inertia::render('Welcome');
     }
 
-    public function contact_us()
+    
+
+    public function contactUs()
     {
-        
+        return Inertia::render('ContactComponent');
     }
 
-    public function about_us()
+    public function aboutUs()
     {
-
+        return Inertia::render('AboutComponent');
     }
 
     public function tours()
     {
-
+        return Inertia::render('ToursComponent');
     }
 
     public function gallery()
     {
-
+        return Inertia::render('GalleryComponent');
     }
 }
