@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Booking;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Laravel\Jetstream\Jetstream;
+
 
 class BookingController extends Controller
 {
@@ -36,7 +39,30 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        
+        Validator::make($request->all(), [
+            'full_name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'quantity' => ['required', 'integer'],
+            'package' => ['required', 'string', 'max:255'],
+            'expected_date' => ['required', 'string', 'max:255'],
+            'short_memo' => ['required', 'string'],
+            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
+        ])->validateWithBag('userBookingInformation');
+
+        Booking::create([
+            'full_name' => $request['full_name'],
+            'email' => $request['email'],
+            'quantity' => $request['quantity'],
+            'package' => $request['package'],
+            'booking_price' => 59,
+            'expected_date' => $request['expected_date'],
+            'status' => 'pendding',
+            'short_memo' => $request['short_memo'],
+        ]);
+
+        return Redirect()->back();
     }
 
     /**
@@ -82,5 +108,10 @@ class BookingController extends Controller
     public function destroy(Booking $booking)
     {
         //
+    }
+
+    public function home_booking()
+    {
+        return Inertia::render('BookingPage');
     }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Package;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
 
 class PackageController extends Controller
 {
@@ -36,7 +38,15 @@ class PackageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Validator::make($request->all(), [
+            'package_name' => ['required', 'string', 'max:255'],
+            'package_price' => ['required', 'string'],
+            'package_discription' => ['required'],
+            'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
+        ])->validateWithBag('createnewpackage');
+
+        if (isset($request['photo'])) {
+        }
     }
 
     /**

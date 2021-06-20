@@ -4,11 +4,12 @@
     <section class="bg-white">
       <div class="container px-4 mx-auto">
         <el-carousel :interval="4000" type="card" height="450px">
-          <el-carousel-item class="text-center" v-for="item in 6" :key="item">
-            <img
-              src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-              class="w-full mx-auto"
-            />
+          <el-carousel-item
+            class="text-center"
+            v-for="item in items"
+            :key="item.id"
+          >
+            <img :src="item.img" class="w-full mx-auto" />
           </el-carousel-item>
         </el-carousel>
       </div>
@@ -121,11 +122,11 @@
               </div>
               <div class="flex mb-4 px-4 rounded">
                 <jet-button
-                  class="inline-block w-full py-3 px-5 leading-none text-center"
+                  class="group relative w-full flex justify-center"
                   :class="{ 'opacity-25': form.processing }"
                   :disabled="form.processing"
                 >
-                  Book now
+                  Enquiry
                 </jet-button>
               </div>
             </div>
@@ -143,11 +144,8 @@
           >
             <div class="p-8 text-center">
               <el-carousel height="350px">
-                <el-carousel-item v-for="item in 4" :key="item">
-                  <img
-                    src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-                    class="w-full mx-auto"
-                  />
+                <el-carousel-item v-for="pack in packages" :key="pack.id">
+                  <img :src="pack.img" class="w-full mx-auto" />
                 </el-carousel-item>
               </el-carousel>
             </div>
@@ -173,12 +171,21 @@
                 d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
               ></path>
             </svg>
-            <span class="uppercase font-semibold">Dunder cousin</span>
-            <p class="mt-4 mb-6 text-gray-400 leading-relaxed">
-              Just enough paper for small business. Not enough to waste it on
-              fluffy animals photos.
+            <span class="uppercase font-semibold">Bird Watching Tour</span>
+            <p class="line-clamp-2 mt-4 mb-6 text-gray-400 leading-relaxed">
+              The visitor will start the trip at the amazing community firm land
+              in the most spectacular bird’s joy, here the visitor will explore
+              forest birds and then the tour will proceed to the gorgeous along
+              mangrove inlet swamp in which tourist will take dhow with full of
+              safety instruments, intelligent guides. Here you can see the
+              beauty of waterfall birds, their diverse group and bright color,
+              distinct song and call. Forest birds such as African golden
+              oriole, Drongo, Weaver, Green Pigeon, Dove, Heron and like on, and
+              the waterfall birds such as Purple heron, Green – Backed Heron,
+              Plover, curlew, Cormorant and so on. Where more than 150 birds’
+              species recoded.
             </p>
-            <h3 class="text-4xl mb-6 font-heading font-semibold">$9 / mo</h3>
+            <h3 class="text-4xl mb-6 font-heading font-semibold">$10</h3>
             <a
               class="
                 inline-block
@@ -196,7 +203,7 @@
               >Book now</a
             >
           </div>
-          <div class="w-full md:w-1/3 p-4 mb-4 md:mb-0 md:border-l" wfd-id="39">
+          <div class="w-full md:w-1/3 p-4 mb-4 md:mb-0 md:border-l">
             <svg
               class="text-green-600 w-10 h-10 mx-auto mb-5"
               fill="none"
@@ -211,12 +218,18 @@
                 d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
               ></path>
             </svg>
-            <span class="uppercase font-semibold" wfd-id="40">Dunder son</span>
-            <p class="mt-4 mb-6 text-gray-400 leading-relaxed">
-              That’s what we’re talking about! More reams of paper is a really
-              reamful choice.
+            <span class="uppercase font-semibold">Cave Tour</span>
+            <p class="line-clamp-2 mt-4 mb-6 text-gray-400 leading-relaxed">
+              Machaga cave is an ancient historical cave that goes back to over
+              3000 BC, in the late 1990s was discovered as an underground cave,
+              locate at Pete in the southern part of Zanzibar Island. The cave
+              has several chambers and tunnels with several archaeological
+              remains such as plant, pottery, stone, bone, etc. The tour will
+              allow you to listen the stories where the human kind comes from.
+              Where the area now used as a part of community known as sacrifices
+              site or shrines site.
             </p>
-            <h3 class="text-4xl mb-6 font-heading font-semibold">$49 / mo</h3>
+            <h3 class="text-4xl mb-6 font-heading font-semibold">$10</h3>
             <a
               class="
                 inline-block
@@ -234,7 +247,7 @@
               >Book now</a
             >
           </div>
-          <div class="w-full md:w-1/3 p-4 mb-4 md:mb-0 md:border-l" wfd-id="37">
+          <div class="w-full md:w-1/3 p-4 mb-4 md:mb-0 md:border-l">
             <svg
               class="text-green-600 w-10 h-10 mx-auto mb-5"
               fill="none"
@@ -249,14 +262,19 @@
                 d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
               ></path>
             </svg>
-            <span class="uppercase font-semibold" wfd-id="38"
-              >Dunder mother</span
-            >
-            <p class="mt-4 mb-6 text-gray-400 leading-relaxed">
-              Big business needs big amount of paper. The best quality comes
-              with Dunder Mifflin paper.
+            <span class="uppercase font-semibold">Uzi Island Trip</span>
+            <p class="line-clamp-2 mt-4 mb-6 text-gray-400 leading-relaxed">
+              The tour will experience the visitors on the uses of herbal
+              treatments from different trees parts such as roots, backs,
+              leaves, fruits, seeds, and variety of resources. Also this tour
+              mind up tourist on how plant are used for different treatment,
+              moreover visitor surprisingly Interact with traditional healer and
+              experience in practical on how plant are associated with
+              witchcraft. The visitors are exposed in the way community are
+              treat them self in term of using holly Qur’anic, Bible, and
+              spiritual depend on Sickness.
             </p>
-            <h3 class="text-4xl mb-6 font-semibold font-heading">$99 / mo</h3>
+            <h3 class="text-4xl mb-6 font-semibold font-heading">$10</h3>
             <a
               class="
                 inline-block
@@ -345,6 +363,59 @@ import JetButton from "@/Jetstream/Button";
 import JetInput from "@/Jetstream/Input";
 import JetValidationErrors from "@/Jetstream/ValidationErrors";
 
+const items = [
+  {
+    id: 1,
+    title: "Wade Cooper",
+    description: "",
+    img: "/assets/backgrounds/DSC_0035.jpg",
+  },
+  {
+    id: 2,
+    title: "Wade Cooper",
+    description: "",
+    img: "/assets/backgrounds/DSC_0110.jpg",
+  },
+  {
+    id: 3,
+    title: "Wade Cooper",
+    description: "",
+    img: "/assets/backgrounds/DSC_0208.jpg",
+  },
+  {
+    id: 4,
+    title: "Wade Cooper",
+    description: "",
+    img: "/assets/backgrounds/DSC_0234.jpg",
+  },
+];
+const packages = [
+  {
+    id: 1,
+    title: "Wade Cooper",
+    description: "",
+    img: "/assets/packages/DSC_0002.jpg",
+  },
+  {
+    id: 2,
+    title: "Wade Cooper",
+    description: "",
+    img: "/assets/packages/DSC_0062.jpg",
+  },
+  {
+    id: 3,
+    title: "Wade Cooper",
+    description: "",
+    img: "/assets/packages/DSC_0103.jpg",
+  },
+  {
+    id: 4,
+    title: "Wade Cooper",
+    description: "",
+    img: "/assets/packages/DSC_0133.jpg",
+  },
+];
+
 export default {
   props: {
     canLogin: Boolean,
@@ -369,6 +440,8 @@ export default {
       newsletter: this.$inertia.form({
         email: "",
       }),
+
+      // items: {},
     };
   },
 
@@ -380,7 +453,10 @@ export default {
     },
   },
   setup() {
-    return {};
+    return {
+      items,
+      packages,
+    };
   },
 };
 </script>

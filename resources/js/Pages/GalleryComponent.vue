@@ -1,60 +1,60 @@
 <template>
   <app-layout-home>
-    <section class="py-8 px-4" wfd-id="150">
+    <section class="pt-8 px-4 bg-white">
       <div class="flex flex-wrap -mx-4 -mb-8" wfd-id="151">
-        <div class="md:w-1/4 px-4 mb-8" wfd-id="159">
+        <div class="md:w-1/4 px-4 mb-8">
           <img
             class="rounded shadow"
-            src="placeholders-2-0/pictures/work.jpg"
+            src="/assets/backgrounds/DSC_0035.jpg"
             alt=""
           />
         </div>
-        <div class="md:w-1/4 px-4 mb-8" wfd-id="158">
+        <div class="md:w-1/4 px-4 mb-8">
           <img
             class="rounded shadow"
-            src="placeholders-2-0/pictures/office.jpg"
+            src="/assets/backgrounds/DSC_0110.jpg"
             alt=""
           />
         </div>
-        <div class="md:w-1/4 px-4 mb-8" wfd-id="157">
+        <div class="md:w-1/4 px-4 mb-8">
           <img
             class="rounded shadow"
-            src="placeholders-2-0/pictures/work.jpg"
+            src="/assets/backgrounds/DSC_0208.jpg"
             alt=""
           />
         </div>
-        <div class="md:w-1/4 px-4 mb-8" wfd-id="156">
+        <div class="md:w-1/4 px-4 mb-8">
           <img
             class="rounded shadow"
-            src="placeholders-2-0/pictures/office.jpg"
+            src="/assets/backgrounds/DSC_0234.jpg"
             alt=""
           />
         </div>
-        <div class="md:w-1/4 px-4 mb-8" wfd-id="155">
+        <div class="md:w-1/4 px-4 mb-8">
           <img
             class="rounded shadow"
-            src="placeholders-2-0/pictures/office.jpg"
+            src="/assets/packages/DSC_0002.jpg"
             alt=""
           />
         </div>
-        <div class="md:w-1/4 px-4 mb-8" wfd-id="154">
+        <div class="md:w-1/4 px-4 mb-8">
           <img
             class="rounded shadow"
-            src="placeholders-2-0/pictures/work.jpg"
+            src="/assets/packages/DSC_0062.jpg"
             alt=""
           />
         </div>
-        <div class="md:w-1/4 px-4 mb-8" wfd-id="153">
+        <div class="md:w-1/4 px-4 mb-8">
           <img
             class="rounded shadow"
-            src="placeholders-2-0/pictures/office.jpg"
+            src="/assets/packages/DSC_0103.jpg"
             alt=""
           />
         </div>
-        <div class="md:w-1/4 px-4 mb-8" wfd-id="152">
+        <div class="md:w-1/4 px-4 mb-8">
           <img
             class="rounded shadow"
-            src="placeholders-2-0/pictures/work.jpg"
+            src="/assets/packages/DSC_0133.jpg"
             alt=""
           />
         </div>

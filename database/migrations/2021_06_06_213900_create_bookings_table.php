@@ -14,7 +14,15 @@ class CreateBookingsTable extends Migration
     public function up()
     {
         Schema::create('bookings', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->string('full_name');
+            $table->string('email');
+            $table->integer('booking_price');
+            $table->string('package');
+            $table->integer('quantity');
+            $table->string('expected_date');
+            $table->enum('status',['pendding','completed','expired','canceled'])->default('pendding');
+            $table->string('short_memo')->nullable();
             $table->timestamps();
         });
     }

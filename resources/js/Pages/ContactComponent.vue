@@ -1,27 +1,9 @@
 <template>
   <app-layout-home>
     <section>
-      <div class="skew skew-top mr-for-radius" wfd-id="288">
-        <svg
-          class="h-8 md:h-12 lg:h-20 w-full text-gray-50"
-          viewBox="0 0 10 10"
-          preserveAspectRatio="none"
-        >
-          <polygon fill="currentColor" points="0 0 10 10 0 10"></polygon>
-        </svg>
-      </div>
-      <div class="skew skew-top ml-for-radius" wfd-id="287">
-        <svg
-          class="h-8 md:h-12 lg:h-20 w-full text-gray-50"
-          viewBox="0 0 10 10"
-          preserveAspectRatio="none"
-        >
-          <polygon fill="currentColor" points="0 10 10 0 10 10"></polygon>
-        </svg>
-      </div>
-      <div class="py-20 bg-gray-50 radius-for-skewed" wfd-id="258">
-        <div class="container mx-auto px-4" wfd-id="259">
-          <div class="mb-12" wfd-id="286">
+      <div class="py-20 bg-gray-50 radius-for-skewed">
+        <div class="container mx-auto px-4">
+          <div class="mb-12">
             <h2 class="text-4xl lg:text-5xl font-bold font-heading">Contact</h2>
             <p class="text-gray-500 leading-loose">
               Got any question? Let’s talk about it.
@@ -32,47 +14,41 @@
               <div class="flex flex-wrap" wfd-id="281">
                 <div class="mb-12 w-full md:w-1/2 lg:w-1/2" wfd-id="285">
                   <h3 class="mb-2 text-3xl lg:text-4xl font-bold">Office</h3>
-                  <p class="text-gray-400">359 Hidden Valley</p>
-                  <p class="text-gray-400">Road, NY</p>
+                  <p class="text-gray-400">Pete Zanzibar</p>
+                  <p class="text-gray-400">Tanzania, TZ</p>
                 </div>
                 <div class="mb-12 w-full md:w-1/2" wfd-id="284">
                   <h3 class="mb-2 text-3xl lg:text-4xl font-bold">Contacts</h3>
-                  <p class="text-gray-400">hallo@gamil.com</p>
+                  <p class="text-gray-400">info@zanauthentic.co.tz</p>
                 </div>
                 <div class="w-full md:w-1/3 lg:w-full" wfd-id="282">
                   <h3 class="mb-2 text-3xl lg:text-4xl font-bold">Socials</h3>
-                  <div class="flex" wfd-id="283">
+                  <div class="flex">
                     <a class="mr-3" href="#">
-                      <img
-                        src="atis-assets/social/facebook-purple.svg"
-                        alt=""
-                      />
+                      <img src="/assets/social/facebook-purple.svg" alt="" />
                     </a>
                     <a class="mr-3" href="#">
-                      <img src="atis-assets/social/twitter-purple.svg" alt="" />
+                      <img src="/assets/social/twitter-purple.svg" alt="" />
                     </a>
                     <a href="#">
-                      <img
-                        src="atis-assets/social/instagram-purple.svg"
-                        alt=""
-                      />
+                      <img src="/assets/social/instagram-purple.svg" alt="" />
                     </a>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="w-full lg:w-1/2" wfd-id="261">
-              <div class="max-w-md lg:mx-auto" wfd-id="262">
-                <form action="" wfd-id="263">
+            <div class="w-full lg:w-1/2">
+              <div class="max-w-md lg:mx-auto">
+                <form @submit.prevent="submit">
                   <div class="mb-4 text-sm">
                     <span class="mr-4 font-semibold">Department:</span>
                     <label class="mr-4">
                       <input
                         class="mr-1"
                         type="radio"
-                        name="department"
-                        value="1"
-                        checked=""
+                        value="support"
+                        checked
+                        v-model="form.department"
                       />
                       <span>Support</span>
                     </label>
@@ -80,11 +56,16 @@
                       <input
                         class="mr-1"
                         type="radio"
-                        name="department"
-                        value="2"
+                        value="booking"
+                        v-model="form.department"
                       />
                       <span>Booking</span>
                     </label>
+
+                    <jet-input-error
+                      :message="form.errors.department"
+                      class="mt-2"
+                    />
                   </div>
                   <div class="mb-4">
                     <jet-input
@@ -107,6 +88,10 @@
                       required
                       autofocus
                     />
+                    <jet-input-error
+                      :message="form.errors.subject"
+                      class="mt-2"
+                    />
                   </div>
                   <div class="mb-4">
                     <jet-input
@@ -125,9 +110,13 @@
                         rounded
                       "
                       placeholder="Full name"
-                      v-model="form.name"
+                      v-model="form.full_name"
                       required
                       autofocus
+                    />
+                    <jet-input-error
+                      :message="form.errors.full_name"
+                      class="mt-2"
                     />
                   </div>
                   <div class="mb-4">
@@ -151,6 +140,10 @@
                       required
                       autofocus
                     />
+                    <jet-input-error
+                      :message="form.errors.email"
+                      class="mt-2"
+                    />
                   </div>
                   <div class="mb-4">
                     <textarea
@@ -171,10 +164,21 @@
                         focus:ring focus:ring-green-200 focus:ring-opacity-50
                       "
                       type="text"
+                      v-model="form.message"
                       placeholder="Message..."
-                    ></textarea>
+                    />
+                    <jet-input-error
+                      :message="form.errors.message"
+                      class="mt-2"
+                    />
                   </div>
                   <div class="flex justify-between items-center">
+                    <jet-action-message
+                      :on="form.recentlySuccessful"
+                      class="mr-3"
+                    >
+                      Sent.
+                    </jet-action-message>
                     <jet-button
                       class="ml-4"
                       :class="{ 'opacity-25': form.processing }"
@@ -189,24 +193,6 @@
           </div>
         </div>
       </div>
-      <div class="skew skew-bottom mr-for-radius" wfd-id="257">
-        <svg
-          class="h-8 md:h-12 lg:h-20 w-full text-gray-50"
-          viewBox="0 0 10 10"
-          preserveAspectRatio="none"
-        >
-          <polygon fill="currentColor" points="0 0 10 0 0 10"></polygon>
-        </svg>
-      </div>
-      <div class="skew skew-bottom ml-for-radius" wfd-id="256">
-        <svg
-          class="h-8 md:h-12 lg:h-20 w-full text-gray-50"
-          viewBox="0 0 10 10"
-          preserveAspectRatio="none"
-        >
-          <polygon fill="currentColor" points="0 0 10 0 10 10"></polygon>
-        </svg>
-      </div>
     </section>
   </app-layout-home>
 </template>
@@ -216,7 +202,8 @@ import AppLayoutHome from "@/Layouts/AppLayoutHome";
 import JetApplicationLogo from "@/Jetstream/ApplicationLogo";
 import JetButton from "@/Jetstream/Button";
 import JetInput from "@/Jetstream/Input";
-import JetValidationErrors from "@/Jetstream/ValidationErrors";
+import JetActionMessage from "@/Jetstream/ActionMessage";
+import JetInputError from "@/Jetstream/InputError";
 
 export default {
   props: {
@@ -230,13 +217,16 @@ export default {
     JetApplicationLogo,
     JetButton,
     JetInput,
-    JetValidationErrors,
+    JetInputError,
+    JetActionMessage,
   },
   data() {
     return {
       form: this.$inertia.form({
-        name: "",
+        full_name: "",
         email: "",
+        subject: "",
+        department: "",
         message: "",
       }),
       newsletter: this.$inertia.form({
@@ -247,8 +237,10 @@ export default {
 
   methods: {
     submit() {
-      this.form.post(this.route("login"), {
-        onFinish: () => this.form.reset("password"),
+      this.form.post(this.route("contactus.send"), {
+        errorBag: "userContactInformation",
+        preserveScroll: true,
+        onSuccess: () => this.form.reset(),
       });
     },
   },

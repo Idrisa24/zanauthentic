@@ -13,6 +13,7 @@
 <script>
 import AppLayout from "@/Layouts/AppLayout";
 import Bookings from "@/Jetstream/Bookings";
+import JetButton from "@/Jetstream/Button";
 
 export default {
   components: {

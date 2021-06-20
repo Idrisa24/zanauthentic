@@ -16,10 +16,9 @@ class CreatePackagesTable extends Migration
         Schema::create('packages', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('package_name');
-            $table->int('package_price');
-            $table->int('package_discount_price');
-            $table->string('package_short_description');
-            $table->longText('package_long_description');
+            $table->integer('package_price');
+            $table->integer('package_discount_price')->default(0);
+            $table->text('package_description');
             $table->timestamps();
         });
     }

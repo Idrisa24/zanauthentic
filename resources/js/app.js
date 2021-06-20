@@ -14,6 +14,7 @@ import {
 } from '@inertiajs/progress';
 import ElementPlus from 'element-plus';
 import 'element-plus/lib/theme-chalk/index.css';
+import CKEditor from '@ckeditor/ckeditor5-vue';
 
 const el = document.getElementById('app');
 
@@ -31,6 +32,7 @@ createApp({
     })
     .use(InertiaPlugin)
     .use(ElementPlus)
+    .use(CKEditor)
     .mount(el);
 
 InertiaProgress.init({

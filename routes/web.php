@@ -6,8 +6,10 @@ use Illuminate\Foundation\Application;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EnqueryController;
 use App\Http\Controllers\PackageController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +24,11 @@ use App\Http\Controllers\PackageController;
 
 Route::get('/', [PagesController::class, 'index'])->name('nyumbani');
 Route::get('/about-us', [PagesController::class, 'aboutUs'])->name('aboutus');
-Route::get('/contact-us', [PagesController::class, 'contactUs'])->name('contactus');
+Route::get('/contact-us', [ContactController::class, 'contactUs'])->name('contactus');
+Route::post('/contact-us', [ContactController::class, 'store'])->name('contactus.send');
 Route::get('/our-tours', [PagesController::class, 'tours'])->name('ourtours');
+Route::get('/book', [BookingController::class, 'home_booking'])->name('booking.now');
+Route::post('/book', [BookingController::class, 'store'])->name('booking.home');
 Route::get('/gallery', [PagesController::class, 'gallery'])->name('ourgallery');
 
 Route::prefix('dashboard')->middleware(['auth:sanctum', 'verified'])->group(function(){
@@ -32,8 +37,11 @@ Route::prefix('dashboard')->middleware(['auth:sanctum', 'verified'])->group(func
     Route::get('enqueries', [EnqueryController::class, 'index'])->name('enqueries.index');
     Route::get('packages', [PackageController::class, 'index'])->name('packages.index');
     Route::get('package/create', [PackageController::class, 'create'])->name('packages.create');
+    Route::post('package/store', [PackageController::class, 'store'])->name('packages.store');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');
+
+

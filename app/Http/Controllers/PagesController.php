@@ -15,11 +15,7 @@ class PagesController extends Controller
 
     
 
-    public function contactUs()
-    {
-        return Inertia::render('ContactComponent');
-    }
-
+    
     public function aboutUs()
     {
         return Inertia::render('AboutComponent');

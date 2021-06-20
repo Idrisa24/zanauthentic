@@ -26,8 +26,14 @@
         "vue-loader": "^16.1.2"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-balloon": "^28.0.0",
+        "@ckeditor/ckeditor5-build-classic": "^28.0.0",
+        "@ckeditor/ckeditor5-image": "^28.0.0",
+        "@ckeditor/ckeditor5-link": "^28.0.0",
+        "@ckeditor/ckeditor5-vue": "^2.0.1",
         "@headlessui/vue": "^1.2.0",
         "@heroicons/vue": "^1.0.1",
+        "@tailwindcss/line-clamp": "^0.2.1",
         "element-plus": "^1.0.2-beta.48"
     }
 }
