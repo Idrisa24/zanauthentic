@@ -17,7 +17,6 @@ class CreatePackagesTable extends Migration
             $table->uuid('id')->primary();
             $table->string('package_name');
             $table->integer('package_price');
-            $table->integer('package_discount_price')->default(0);
             $table->text('package_description');
             $table->timestamps();
         });
