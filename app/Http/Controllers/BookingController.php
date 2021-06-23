@@ -11,6 +11,7 @@ use Laravel\Jetstream\Jetstream;
 
 class BookingController extends Controller
 {
+    public $bookingId = 00001;
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +19,8 @@ class BookingController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Booking/Index');
+        $bookings = Booking::all();
+        return Inertia::render('Booking/Index',['bookings' => $bookings]);
     }
 
     /**
@@ -73,7 +75,7 @@ class BookingController extends Controller
      */
     public function show(Booking $booking)
     {
-        //
+        dd($this->bookingId = $this->bookingId + 1);
     }
 
     /**

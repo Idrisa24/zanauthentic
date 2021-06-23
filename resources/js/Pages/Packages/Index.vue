@@ -7,7 +7,7 @@
       <div class="font-semibold text-xl leading-tight float-right -mt-8">
         <!-- <jet-button> Create </jet-button> -->
         <jet-nav-link :href="route('packages.create')">
-          Create a Package
+          Create a Package &nbsp;
           <ViewGridAddIcon class="h-5 w-5 text-gray-600" />
         </jet-nav-link>
       </div>

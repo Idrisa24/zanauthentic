@@ -3,7 +3,7 @@
   <app-layout-home>
     <section class="bg-white">
       <div class="container px-4 mx-auto">
-        <el-carousel :interval="4000" type="card" height="450px">
+        <el-carousel :interval="4000" type="card">
           <el-carousel-item
             class="text-center"
             v-for="item in items"
@@ -53,82 +53,94 @@
           <div class="w-full md:w-1/2 lg:w-2/5 px-3">
             <div class="p-8 text-center">
               <span class="text-greenGray-400">Fill in the form below</span>
-              <h4 class="mb-6 text-2xl">To make your Booking</h4>
-              <div class="flex mb-4 px-4 rounded">
-                <jet-input
-                  id="fullname"
-                  type="text"
-                  class="
-                    block
-                    w-full
-                    pl-3
-                    py-4
-                    text-xs text-green-400
-                    font-semibold
-                    leading-none
-                    bg-greenGray-100
-                    outline-none
-                    rounded
-                  "
-                  placeholder="Full name"
-                  v-model="form.email"
-                  required
-                  autofocus
-                />
-              </div>
-              <div class="flex mb-4 px-4 rounded">
-                <jet-input
-                  id="email"
-                  class="
-                    block
-                    w-full
-                    pl-3
-                    py-4
-                    text-xs text-green-400
-                    font-semibold
-                    leading-none
-                    bg-greenGray-100
-                    outline-none
-                    rounded
-                  "
-                  type="email"
-                  placeholder="name@email.com"
-                  v-model="form.email"
-                  required
-                  autofocus
-                />
-              </div>
-              <div class="flex mb-6 px-4 rounded">
-                <textarea
-                  class="
-                    w-full
-                    h-24
-                    p-4
-                    text-xs
-                    font-semibold
-                    leading-none
-                    resize-none
-                    bg-white
-                    outline-none
-                    border-gray-300
-                    rounded-md
-                    shadow-sm
-                    focus:border-green-300
-                    focus:ring focus:ring-green-200 focus:ring-opacity-50
-                  "
-                  type="text"
-                  placeholder="Message..."
-                ></textarea>
-              </div>
-              <div class="flex mb-4 px-4 rounded">
-                <jet-button
-                  class="group relative w-full flex justify-center"
-                  :class="{ 'opacity-25': form.processing }"
-                  :disabled="form.processing"
-                >
-                  Enquiry
-                </jet-button>
-              </div>
+              <h4 class="mb-6 text-2xl">Want to know more about us ?</h4>
+              <form @submit.prevent="submit">
+                <div class="flex mb-4 px-4 rounded">
+                  <jet-input
+                    id="fullname"
+                    type="text"
+                    class="
+                      block
+                      w-full
+                      pl-3
+                      py-4
+                      text-xs text-green-400
+                      font-semibold
+                      leading-none
+                      bg-greenGray-100
+                      outline-none
+                      rounded
+                    "
+                    placeholder="Full name"
+                    v-model="form.full_name"
+                    required
+                    autofocus
+                  />
+                </div>
+                <div class="flex mb-4 px-4 rounded">
+                  <jet-input
+                    id="email"
+                    class="
+                      block
+                      w-full
+                      pl-3
+                      py-4
+                      text-xs text-green-400
+                      font-semibold
+                      leading-none
+                      bg-greenGray-100
+                      outline-none
+                      rounded
+                    "
+                    type="email"
+                    placeholder="name@example.com"
+                    v-model="form.email"
+                    required
+                    autofocus
+                  />
+                </div>
+                <div class="flex mb-6 px-4 rounded">
+                  <textarea
+                    v-model="form.message"
+                    class="
+                      w-full
+                      h-24
+                      p-4
+                      text-xs
+                      font-semibold
+                      leading-none
+                      resize-none
+                      bg-white
+                      outline-none
+                      border-gray-300
+                      rounded-md
+                      shadow-sm
+                      focus:border-green-300
+                      focus:ring focus:ring-green-200 focus:ring-opacity-50
+                    "
+                    type="text"
+                    placeholder="Message..."
+                  />
+                </div>
+
+                <div class="flex mb-4 px-4 rounded">
+                  <jet-button
+                    class="group relative w-full flex justify-center"
+                    :class="{ 'opacity-25': form.processing }"
+                    :disabled="form.processing"
+                  >
+                    Enquiry
+                  </jet-button>
+                </div>
+                <div class="flex px-4 rounded">
+                  <jet-action-message
+                    :on="form.recentlySuccessful"
+                    class="mr-3"
+                  >
+                    Enquery Sent.
+                  </jet-action-message>
+                </div>
+              </form>
             </div>
           </div>
           <div
@@ -218,7 +230,7 @@
                 d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
               ></path>
             </svg>
-            <span class="uppercase font-semibold">Cave Tour</span>
+            <span class="uppercase font-semibold">Village Tour</span>
             <p class="line-clamp-2 mt-4 mb-6 text-gray-400 leading-relaxed">
               Machaga cave is an ancient historical cave that goes back to over
               3000 BC, in the late 1990s was discovered as an underground cave,
@@ -262,7 +274,7 @@
                 d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
               ></path>
             </svg>
-            <span class="uppercase font-semibold">Uzi Island Trip</span>
+            <span class="uppercase font-semibold">Mangrove Trip</span>
             <p class="line-clamp-2 mt-4 mb-6 text-gray-400 leading-relaxed">
               The tour will experience the visitors on the uses of herbal
               treatments from different trees parts such as roots, backs,
@@ -362,6 +374,8 @@ import JetApplicationLogo from "@/Jetstream/ApplicationLogo";
 import JetButton from "@/Jetstream/Button";
 import JetInput from "@/Jetstream/Input";
 import JetValidationErrors from "@/Jetstream/ValidationErrors";
+import JetActionMessage from "@/Jetstream/ActionMessage";
+import JetInputError from "@/Jetstream/InputError";
 
 const items = [
   {
@@ -429,11 +443,13 @@ export default {
     JetButton,
     JetInput,
     JetValidationErrors,
+    JetActionMessage,
+    JetInputError,
   },
   data() {
     return {
       form: this.$inertia.form({
-        name: "",
+        full_name: "",
         email: "",
         message: "",
       }),
@@ -447,8 +463,10 @@ export default {
 
   methods: {
     submit() {
-      this.form.post(this.route("login"), {
-        onFinish: () => this.form.reset("password"),
+      this.form.post(this.route("enquery.store"), {
+        errorBag: "userEnqueryInformation",
+        preserveScroll: true,
+        onSuccess: () => this.form.reset(),
       });
     },
   },

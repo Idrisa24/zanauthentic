@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Enquery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class EnqueryController extends Controller
 {
@@ -15,7 +16,8 @@ class EnqueryController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Enqueries/Index');
+        $enqueries = Enquery::all();
+        return Inertia::render('Enqueries/Index',['enqueries' => $enqueries]);
         
     }
 
@@ -37,7 +39,21 @@ class EnqueryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Validator::make($request->all(), [
+            'full_name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
+            'message' => ['required', 'string'],
+        ])->validateWithBag('userEnqueryInformation');
+
+        // dd($request->all());
+
+        Enquery::create([
+            'full_name' => $request['full_name'],
+            'email' => $request['email'],
+            'message' => $request['message'],
+        ]);
+
+        return Redirect()->back();
     }
 
     /**
@@ -48,7 +64,7 @@ class EnqueryController extends Controller
      */
     public function show(Enquery $enquery)
     {
-        //
+        dd('Imefika hiyo');
     }
 
     /**

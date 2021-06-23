@@ -42,4 +42,8 @@ class Booking extends Model
         'short_memo',
     ];
 
+    protected $casts = [
+        'created_at' => 'datetime:d/m/Y H:m a',
+    ];
+
 }

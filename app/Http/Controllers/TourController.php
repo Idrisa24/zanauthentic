@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Tour;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TourController extends Controller
 {
+    public $file_path;
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +17,8 @@ class TourController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Tours/Index');
+        $tours = Tour::all();
+        return Inertia::render('Tours/Index', ['tours' => $tours]);
     }
     
     public function home_tours()
@@ -30,7 +33,8 @@ class TourController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Tours/Create');
+        
     }
 
     /**
@@ -41,7 +45,28 @@ class TourController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        Validator::make($request->all(), [
+            'tour_name' => ['required', 'string', 'max:255'],
+            'tour_price' => ['required', 'string'],
+            'tour_discription' => ['required'],
+            'tour_photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:15360'],
+        ])->validateWithBag('createnewtour');
+
+        $tour = Tour::create([
+            'tour_name' => $request->tour_name,
+            'tour_description' => $request->tour_discription,
+            'tour_price' => $request->tour_price,
+        ]);
+        if (isset($request['tour_photo'])) {
+            $tour->tour_photo_path =  $request->tour_photo->store('tours', 'public');
+            $tour->save();
+        }
+
+
+
+
+        return Redirect()->back();
     }
 
     /**

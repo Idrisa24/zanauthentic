@@ -111,7 +111,7 @@
     </div>
   </section>
 
-  <jet-table />
+  <!-- <jet-table /> -->
 </template>
 
 <script>

@@ -52,7 +52,6 @@
                     bg-purple-50
                     rounded-full
                   "
-                  wfd-id="79"
                   >Monthly Subscription</span
                 >
               </td>

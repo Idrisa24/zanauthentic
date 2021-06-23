@@ -8,7 +8,7 @@ use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
 class Enquery extends Model
 {
-    use HasFactoryuse, Uuid;
+    use HasFactory, Uuid;
     
     /**
      * The "type" of the auto-incrementing ID.
