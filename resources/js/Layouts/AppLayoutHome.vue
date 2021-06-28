@@ -37,7 +37,10 @@
       >
         <div class="flex flex-shrink-0 mr-6">
           <a class="text-xl text-green-600 font-semibold font-heading" href="#">
-            <jet-application-logo />
+            <img
+              class="block h-20 max-w-md"
+              src="/assets/logo/ZAN-AUTHENTIC-01.png"
+            />
           </a>
         </div>
         <div class="block lg:hidden">
@@ -276,18 +279,17 @@
             >.
           </p>
           <div class="order-first lg:order-last -mx-2 mb-4 lg:mb-0" wfd-id="7">
-            <a class="inline-block px-2" href="#"
+            <!-- <a class="inline-block px-2" href="#"
               ><img src="/assets/icons/facebook-green.svg" alt="" /></a
             ><a class="inline-block px-2" href="#"
               ><img src="/assets/icons/twitter-green.svg" alt="" /></a
             ><a class="inline-block px-2" href="#"
               ><img src="/assets/icons/instagram-green.svg" alt=""
-            /></a>
+            /></a> -->
           </div>
         </div>
       </div>
     </section>
-    
   </div>
 </template>
 

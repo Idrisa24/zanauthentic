@@ -45,7 +45,7 @@
                 font-semibold
                 rounded
               "
-              >$59</span
+              >$70</span
             >
           </label>
         </div>
@@ -437,7 +437,22 @@ export default {
     },
   },
   setup() {
-    return {};
+    const items = [
+      { id: 1, img: "/assets/packages/DSC_0002.jpg" },
+      { id: 2, img: "/assets/packages/DSC_0103.jpg" },
+      { id: 3, img: "/assets/packages/DSC_0062.jpg" },
+      { id: 4, img: "/assets/packages/DSC_0133.jpg" },
+    ];
+    const packages = [
+      { id: 1, img: "/assets/backgrounds/DSC_0110.jpg" },
+      { id: 2, img: "/assets/backgrounds/DSC_0208.jpg" },
+      { id: 3, img: "/assets/backgrounds/DSC_0219.jpg" },
+      { id: 4, img: "/assets/backgrounds/DSC_0234.jpg" },
+    ];
+    return {
+      items,
+      packages,
+    };
   },
 };
 </script>
