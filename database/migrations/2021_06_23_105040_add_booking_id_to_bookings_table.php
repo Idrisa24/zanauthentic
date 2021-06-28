@@ -13,7 +13,7 @@ class AddBookingIdToBookingsTable extends Migration
      */
     public function up()
     {
-        Schema::table('Bookings', function (Blueprint $table) {
+        Schema::table('bookings', function (Blueprint $table) {
             $table->string('booking_id')->after('id');
         });
     }
@@ -25,7 +25,7 @@ class AddBookingIdToBookingsTable extends Migration
      */
     public function down()
     {
-        Schema::table('Bookings', function (Blueprint $table) {
+        Schema::table('bookings', function (Blueprint $table) {
             $table->dropColumn('booking_id');
         });
     }
