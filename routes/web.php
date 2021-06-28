@@ -31,18 +31,23 @@ Route::get('/book', [BookingController::class, 'home_booking'])->name('booking.n
 Route::post('/book', [BookingController::class, 'store'])->name('booking.home');
 Route::post('/enquery', [EnqueryController::class, 'store'])->name('enquery.store');
 Route::get('/gallery', [PagesController::class, 'gallery'])->name('ourgallery');
+Route::get('/tours/{tour}/details', [TourController::class, 'details'])->name('tours.details');
 
 Route::prefix('dashboard')->middleware(['auth:sanctum', 'verified'])->group(function(){
-    Route::get('tours', [TourController::class, 'index'])->name('tours.index');
-    Route::get('tour/create', [TourController::class, 'create'])->name('tours.create');
-    Route::put('tour/store', [TourController::class, 'store'])->name('tours.store');
+    Route::get('tours', [TourController::class, 'index'])->middleware(['password.confirm'])->name('tours.index');
+    Route::get('tour/create', [TourController::class, 'create'])->middleware(['password.confirm'])->name('tours.create');
+    Route::put('tour/store', [TourController::class, 'store'])->middleware(['password.confirm'])->name('tours.store');
+    Route::put('tour/{tour}/update', [TourController::class, 'update'])->middleware(['password.confirm'])->name('tours.update');
     Route::get('booking', [BookingController::class, 'index'])->name('booking.index');
     Route::get('booking/{booking}/show', [BookingController::class, 'show'])->whereUuid('booking')->middleware(['password.confirm'])->name('booking.show');
-    Route::get('enqueries', [EnqueryController::class, 'index'])->name('enqueries.index');
-    Route::get('enqueries/show', [EnqueryController::class, 'show'])->name('enqueries.show');
-    Route::get('packages', [PackageController::class, 'index'])->name('packages.index');
-    Route::get('package/create', [PackageController::class, 'create'])->name('packages.create');
-    Route::post('package/store', [PackageController::class, 'store'])->name('packages.store');
+    Route::get('enqueries', [EnqueryController::class, 'index'])->middleware(['password.confirm'])->name('enqueries.index');
+    Route::get('enqueries/show', [EnqueryController::class, 'show'])->middleware(['password.confirm'])->name('enqueries.show');
+    Route::get('packages', [PackageController::class, 'index'])->middleware(['password.confirm'])->name('packages.index');
+    Route::get('package/create', [PackageController::class, 'create'])->middleware(['password.confirm'])->name('packages.create');
+    Route::post('package/store', [PackageController::class, 'store'])->middleware(['password.confirm'])->name('packages.store');
+});
+Route::get('/mail', function(){
+    return view('mail.tourbooked');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

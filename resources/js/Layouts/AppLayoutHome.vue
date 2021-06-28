@@ -287,6 +287,7 @@
         </div>
       </div>
     </section>
+    
   </div>
 </template>
 
@@ -303,6 +304,7 @@ export default {
     canLogin: Boolean,
     canRegister: Boolean,
   },
+
   components: {
     JetAuthenticationCardLogo,
     JetBanner,

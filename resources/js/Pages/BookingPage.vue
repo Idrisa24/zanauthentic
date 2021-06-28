@@ -57,12 +57,14 @@
               "
             >
               <span class="flex items-center">
-                <!-- <img
-                  :src="selected.avatar"
+                <img
+                  :src="'/storage/' + selected.tour_photo_path"
                   alt=""
                   class="flex-shrink-0 h-6 w-6 rounded-full"
-                /> -->
-                <span class="ml-3 block truncate">{{ selected.name }}</span>
+                />
+                <span class="ml-3 block truncate">{{
+                  selected.tour_name
+                }}</span>
               </span>
               <span
                 class="
@@ -108,9 +110,9 @@
               >
                 <ListboxOption
                   as="template"
-                  v-for="person in people"
-                  :key="person.id"
-                  :value="person"
+                  v-for="tour in tours"
+                  :key="tour.id"
+                  :value="tour"
                   v-slot="{ active, selected }"
                 >
                   <li
@@ -120,18 +122,18 @@
                     ]"
                   >
                     <div class="flex items-center">
-                      <!-- <img
-                        :src="person.avatar"
+                      <img
+                        :src="'/storage/' + tour.tour_photo_path"
                         alt=""
                         class="flex-shrink-0 h-6 w-6 rounded-full"
-                      /> -->
+                      />
                       <span
                         :class="[
                           selected ? 'font-semibold' : 'font-normal',
                           'ml-3 block truncate',
                         ]"
                       >
-                        {{ person.name }}
+                        {{ tour.tour_name }}
                       </span>
                     </div>
 
@@ -264,40 +266,10 @@ import JetLabel from "@/Jetstream/Label";
 import JetValidationErrors from "@/Jetstream/ValidationErrors";
 import JetActionMessage from "@/Jetstream/ActionMessage";
 
-const people = [
-  {
-    id: 1,
-    name: "Wade Cooper",
-    avatar:
-      "https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  },
-  {
-    id: 2,
-    name: "Arlene Mccoy",
-    avatar:
-      "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  },
-  {
-    id: 3,
-    name: "Devon Webb",
-    avatar:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80",
-  },
-  {
-    id: 4,
-    name: "Tom Cook",
-    avatar:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  },
-  {
-    id: 5,
-    name: "Tanya Fox",
-    avatar:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  },
-];
-
 export default {
+  props: {
+    tours: Object,
+  },
   components: {
     JetAuthenticationCard,
     JetAuthenticationCardLogo,
@@ -323,8 +295,9 @@ export default {
         full_name: "",
         email: "",
         quantity: 1,
-        package: this.selected.name,
+        package: this.selected.tour_name,
         expected_date: "",
+        booking_price: this.selected.tour_price,
         short_memo: "",
         terms: false,
       }),
@@ -340,12 +313,12 @@ export default {
       });
     },
   },
-  setup() {
-    const selected = ref(people[2]);
-
+  setup(props) {
+    const selected = ref(props.tours[0]);
+    const tours = props.tours;
     return {
-      people,
       selected,
+      tours,
     };
   },
 };

@@ -84,7 +84,7 @@
                   <div v-html="scope.row.tour_description"></div>
                 </template>
               </el-table-column>
-              <el-table-column label="Description" width="500">
+              <el-table-column label="Image">
                 <template #default="scope">
                   <img
                     style="height: 50px; with: 100px"

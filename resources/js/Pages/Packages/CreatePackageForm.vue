@@ -18,6 +18,128 @@
         <jet-input-error :message="form.errors.package_name" class="mt-2" />
       </div>
       <div class="col-span-6 sm:col-span-4">
+        <Listbox as="div" v-model="selected">
+          <ListboxLabel class="block text-sm font-medium text-gray-700">
+            Tour
+          </ListboxLabel>
+          <div class="mt-1 relative">
+            <ListboxButton
+              class="
+                relative
+                w-full
+                bg-white
+                border border-gray-300
+                rounded-md
+                shadow-sm
+                pl-3
+                pr-10
+                py-2
+                text-left
+                cursor-default
+                focus:outline-none
+                focus:ring-1 focus:ring-green-200
+                focus:border-green-200
+                sm:text-sm
+              "
+            >
+              <span class="flex items-center">
+                <img
+                  :src="'/storage/' + selected.tour_photo_path"
+                  alt=""
+                  class="flex-shrink-0 h-6 w-6 rounded-full"
+                />
+                <span class="ml-3 block truncate">{{
+                  selected.tour_name
+                }}</span>
+              </span>
+              <span
+                class="
+                  ml-3
+                  absolute
+                  inset-y-0
+                  right-0
+                  flex
+                  items-center
+                  pr-2
+                  pointer-events-none
+                "
+              >
+                <SelectorIcon
+                  class="h-5 w-5 text-gray-400"
+                  aria-hidden="true"
+                />
+              </span>
+            </ListboxButton>
+
+            <transition
+              leave-active-class="transition ease-in duration-100"
+              leave-from-class="opacity-100"
+              leave-to-class="opacity-0"
+            >
+              <ListboxOptions
+                class="
+                  absolute
+                  z-10
+                  mt-1
+                  w-full
+                  bg-white
+                  shadow-lg
+                  max-h-56
+                  rounded-md
+                  py-1
+                  text-base
+                  ring-1 ring-black ring-opacity-5
+                  overflow-auto
+                  focus:outline-none
+                  sm:text-sm
+                "
+              >
+                <ListboxOption
+                  as="template"
+                  v-for="tour in tours"
+                  :key="tour.id"
+                  :value="tour"
+                  v-slot="{ active, selected }"
+                >
+                  <li
+                    :class="[
+                      active ? 'text-white bg-green-600' : 'text-gray-900',
+                      'cursor-default select-none relative py-2 pl-3 pr-9',
+                    ]"
+                  >
+                    <div class="flex items-center">
+                      <img
+                        :src="'/storage/' + tour.tour_photo_path"
+                        alt=""
+                        class="flex-shrink-0 h-6 w-6 rounded-full"
+                      />
+                      <span
+                        :class="[
+                          selected ? 'font-semibold' : 'font-normal',
+                          'ml-3 block truncate',
+                        ]"
+                      >
+                        {{ tour.tour_name }}
+                      </span>
+                    </div>
+
+                    <span
+                      v-if="selected"
+                      :class="[
+                        active ? 'text-white' : 'text-green-600',
+                        'absolute inset-y-0 right-0 flex items-center pr-4',
+                      ]"
+                    >
+                      <CheckIcon class="h-5 w-5" aria-hidden="true" />
+                    </span>
+                  </li>
+                </ListboxOption>
+              </ListboxOptions>
+            </transition>
+          </div>
+        </Listbox>
+      </div>
+      <div class="col-span-6 sm:col-span-4">
         <ckeditor
           :editor="editor"
           v-model="editorData"
@@ -135,6 +257,15 @@
 </template>
 
 <script>
+import { ref } from "vue";
+import {
+  Listbox,
+  ListboxButton,
+  ListboxLabel,
+  ListboxOption,
+  ListboxOptions,
+} from "@headlessui/vue";
+import { CheckIcon, SelectorIcon } from "@heroicons/vue/solid";
 import JetButton from "@/Jetstream/Button";
 import JetFormSection from "@/Jetstream/FormSection";
 import JetInput from "@/Jetstream/Input";
@@ -146,6 +277,7 @@ import JetSectionBorder from "@/Jetstream/SectionBorder";
 import ClassicEditor from "@ckeditor/ckeditor5-build-balloon";
 
 export default {
+  props: ["tours"],
   components: {
     JetActionMessage,
     JetButton,
@@ -155,6 +287,13 @@ export default {
     JetLabel,
     JetSecondaryButton,
     JetSectionBorder,
+    Listbox,
+    ListboxButton,
+    ListboxLabel,
+    ListboxOption,
+    ListboxOptions,
+    CheckIcon,
+    SelectorIcon,
   },
   data() {
     return {
@@ -162,6 +301,7 @@ export default {
         _method: "POST",
         package_name: "",
         package_price: "",
+        tour_id: this.selected.tour_id,
         package_discription: "",
         photo: null,
       }),
@@ -221,6 +361,15 @@ export default {
         this.$refs.photo.value = null;
       }
     },
+  },
+
+  setup(props) {
+    const selected = ref(props.tours[0]);
+    const tours = props.tours;
+    return {
+      selected,
+      tours,
+    };
   },
 };
 </script>

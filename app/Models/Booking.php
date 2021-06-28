@@ -37,6 +37,7 @@ class Booking extends Model
         'quantity',
         'package',
         'booking_price',
+        'booking_id',
         'expected_date',
         'status',
         'short_memo',

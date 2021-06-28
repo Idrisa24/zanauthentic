@@ -15,7 +15,7 @@
       <!-- <Create packages /> -->
       <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
         <div class="md:grid md:grid-cols-24 md:gap-6">
-          <create-package-form />
+          <create-package-form :tours="tours" />
         </div>
       </div>
     </div>
@@ -32,6 +32,9 @@ import JetSectionBorder from "@/Jetstream/SectionBorder";
 import CreatePackageForm from "./CreatePackageForm.vue";
 
 export default {
+  props: {
+    tours: Object,
+  },
   components: {
     AppLayout,
     JetButton,

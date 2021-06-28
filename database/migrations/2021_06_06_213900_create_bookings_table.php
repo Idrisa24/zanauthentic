@@ -21,7 +21,7 @@ class CreateBookingsTable extends Migration
             $table->string('package');
             $table->integer('quantity');
             $table->string('expected_date');
-            $table->enum('status',['pendding','completed','expired','canceled'])->default('pendding');
+            $table->enum('status',['pendding','new','completed','expired','canceled'])->default('new');
             $table->string('short_memo')->nullable();
             $table->timestamps();
         });

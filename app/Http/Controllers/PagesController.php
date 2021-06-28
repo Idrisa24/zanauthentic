@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tour;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -10,7 +11,8 @@ class PagesController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Welcome');
+        $tours = Tour::all();
+        return Inertia::render('Welcome',['tours' => $tours]);
     }
 
     

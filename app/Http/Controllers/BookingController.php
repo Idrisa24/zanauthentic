@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tour;
 use Inertia\Inertia;
 use App\Models\Booking;
+use App\Mail\TourBooked;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Laravel\Jetstream\Jetstream;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 
 class BookingController extends Controller
@@ -41,28 +44,40 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
+        $prefix = "ZAN-";
+        $char = rand(1,1000);
+        $bookingId = $prefix . strval($char);
 
-        
         Validator::make($request->all(), [
             'full_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'quantity' => ['required', 'integer'],
+            'booking_price' => ['required', 'integer'],
             'package' => ['required', 'string', 'max:255'],
             'expected_date' => ['required', 'string', 'max:255'],
             'short_memo' => ['required', 'string'],
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
         ])->validateWithBag('userBookingInformation');
 
-        Booking::create([
+        $booking = Booking::create([
             'full_name' => $request['full_name'],
             'email' => $request['email'],
             'quantity' => $request['quantity'],
             'package' => $request['package'],
-            'booking_price' => 59,
+            'booking_id' => $bookingId,
+            'booking_price' => $request['booking_price'],
             'expected_date' => $request['expected_date'],
-            'status' => 'pendding',
             'short_memo' => $request['short_memo'],
         ]);
+
+        $sent = Mail::to($booking->email)
+                    // ->bcc('info@zanauthentic.co.tz')
+                    ->send(new TourBooked($booking));
+
+        // if ($sent) {
+            
+        // }
+
 
         return Redirect()->back();
     }
@@ -75,7 +90,7 @@ class BookingController extends Controller
      */
     public function show(Booking $booking)
     {
-        dd($this->bookingId = $this->bookingId + 1);
+        return Inertia::render('Booking/Show',['booking' => $booking]);
     }
 
     /**
@@ -114,6 +129,7 @@ class BookingController extends Controller
 
     public function home_booking()
     {
-        return Inertia::render('BookingPage');
+        $tours = Tour::all();
+        return Inertia::render('BookingPage',['tours' => $tours]);
     }
 }

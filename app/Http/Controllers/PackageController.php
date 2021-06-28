@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tour;
 use Inertia\Inertia;
 use App\Models\Package;
 use Illuminate\Http\Request;
@@ -17,7 +18,8 @@ class PackageController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Packages/Index');
+        $packages = Package::all();
+        return Inertia::render('Packages/Index',['packages' => $packages]);
     }
 
     /**
@@ -27,7 +29,8 @@ class PackageController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Packages/Create');
+        $tours = Tour::all();
+        return Inertia::render('Packages/Create',['tours' => $tours]);
     }
 
     /**
@@ -42,11 +45,25 @@ class PackageController extends Controller
             'package_name' => ['required', 'string', 'max:255'],
             'package_price' => ['required', 'string'],
             'package_discription' => ['required'],
+            'tour_id' => ['required', 'string'],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
         ])->validateWithBag('createnewpackage');
 
-        if (isset($request['photo'])) {
+        $packages =  Package::create([
+            'package_name' => $request['package_name'],
+            'package_price' => $request['package_price'],
+            'package_discription' => $request['package_discription'],
+            'tour_id' => $request['tour_id'],
+        ]);
+
+        
+        if (isset($request['photo'])) 
+        {
+            $package->package_photo_path = $request->photo->store('packages', 'public');
+            $package->save();
         }
+
+        return Redirect()->back();
     }
 
     /**

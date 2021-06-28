@@ -15,6 +15,7 @@ class AddForegnKeyCollumnToPackagesTable extends Migration
     {
         Schema::table('packages', function (Blueprint $table) {
             $table->uuid('tour_id');
+            $table->string('package_photo_path', 2048)->nullable()->after('package_description');
             $table->foreign('tour_id')->references('id')->on('tours')->onDelete('CASCADE');
         });
     }

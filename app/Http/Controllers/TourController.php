@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Validator;
 
 class TourController extends Controller
 {
-    public $file_path;
     /**
      * Display a listing of the resource.
      *
@@ -58,6 +57,7 @@ class TourController extends Controller
             'tour_description' => $request->tour_discription,
             'tour_price' => $request->tour_price,
         ]);
+
         if (isset($request['tour_photo'])) {
             $tour->tour_photo_path =  $request->tour_photo->store('tours', 'public');
             $tour->save();
@@ -77,7 +77,7 @@ class TourController extends Controller
      */
     public function show(Tour $tour)
     {
-        //
+        return Inertia::render('Tours/Show',['tour' => $tour]);
     }
 
     /**
@@ -112,5 +112,10 @@ class TourController extends Controller
     public function destroy(Tour $tour)
     {
         //
+    }
+
+    public function details(Tour $tour)
+    {
+        return Inertia::render('TourDetailPage', ['tour' => $tour]);
     }
 }

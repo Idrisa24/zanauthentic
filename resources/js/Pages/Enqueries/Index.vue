@@ -98,7 +98,6 @@
                     confirmButtonText="OK"
                     cancelButtonText="No, Thanks"
                     title="Are you sure to delete this?"
-                    @confirm=""
                   >
                     <template #reference>
                       <el-button

@@ -168,7 +168,11 @@
     <section>
       <div class="container px-4 mx-auto">
         <div class="flex flex-wrap -mx-4 text-center">
-          <div class="w-full md:w-1/3 p-4 mb-4 md:mb-0">
+          <div
+            v-for="tour in tours"
+            :key="tour.id"
+            class="w-full md:w-1/3 p-4 mb-4 md:mb-0"
+          >
             <svg
               class="text-green-600 w-10 h-10 mx-auto mb-5"
               fill="none"
@@ -183,39 +187,57 @@
                 d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
               ></path>
             </svg>
-            <span class="uppercase font-semibold">Bird Watching Tour</span>
-            <p class="line-clamp-2 mt-4 mb-6 text-gray-400 leading-relaxed">
-              The visitor will start the trip at the amazing community firm land
-              in the most spectacular bird’s joy, here the visitor will explore
-              forest birds and then the tour will proceed to the gorgeous along
-              mangrove inlet swamp in which tourist will take dhow with full of
-              safety instruments, intelligent guides. Here you can see the
-              beauty of waterfall birds, their diverse group and bright color,
-              distinct song and call. Forest birds such as African golden
-              oriole, Drongo, Weaver, Green Pigeon, Dove, Heron and like on, and
-              the waterfall birds such as Purple heron, Green – Backed Heron,
-              Plover, curlew, Cormorant and so on. Where more than 150 birds’
-              species recoded.
-            </p>
-            <h3 class="text-4xl mb-6 font-heading font-semibold">$10</h3>
-            <a
-              class="
-                inline-block
-                py-4
-                px-8
-                leading-none
-                text-green-600
-                bg-green-50
-                hover:
-                font-semibold
-                rounded
-                shadow
-              "
-              href="#"
-              >Book now</a
-            >
+            <span class="uppercase font-semibold">{{ tour.tour_name }}</span>
+            <p
+              v-html="tour.tour_description"
+              class="line-clamp-2 mt-4 mb-6 text-gray-400 leading-relaxed"
+            ></p>
+            <h3 class="text-4xl mb-6 font-heading font-semibold">
+              ${{ tour.tour_price }}
+            </h3>
+            <div>
+              <a
+                class="
+                  block
+                  sm:inline-block
+                  py-4
+                  px-6
+                  text-xs text-blueGray-500
+                  hover:text-blueGray-600
+                  text-center
+                  font-semibold
+                  leading-none
+                  bg-white
+                  border border-blueGray-200
+                  hover:border-blueGray-300
+                  rounded
+                  mx-2
+                "
+                :href="route('tours.details', { tour: tour.id })"
+                >Detail</a
+              >
+              <a
+                class="
+                  block
+                  sm:inline-block
+                  py-4
+                  px-6
+                  mb-4
+                  sm:mb-0
+                  sm:mr-3
+                  text-xs text-white text-center
+                  font-semibold
+                  leading-none
+                  bg-blue-600
+                  hover:bg-blue-700
+                  rounded
+                "
+                :href="route('booking.now')"
+                >Book Now</a
+              >
+            </div>
           </div>
-          <div class="w-full md:w-1/3 p-4 mb-4 md:mb-0 md:border-l">
+          <!-- <div class="w-full md:w-1/3 p-4 mb-4 md:mb-0 md:border-l">
             <svg
               class="text-green-600 w-10 h-10 mx-auto mb-5"
               fill="none"
@@ -303,7 +325,7 @@
               href="#"
               >Book now</a
             >
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
@@ -370,65 +392,11 @@
 
 <script>
 import AppLayoutHome from "@/Layouts/AppLayoutHome";
-import JetApplicationLogo from "@/Jetstream/ApplicationLogo";
 import JetButton from "@/Jetstream/Button";
 import JetInput from "@/Jetstream/Input";
 import JetValidationErrors from "@/Jetstream/ValidationErrors";
 import JetActionMessage from "@/Jetstream/ActionMessage";
 import JetInputError from "@/Jetstream/InputError";
-
-const items = [
-  {
-    id: 1,
-    title: "Wade Cooper",
-    description: "",
-    img: "/assets/backgrounds/DSC_0035.jpg",
-  },
-  {
-    id: 2,
-    title: "Wade Cooper",
-    description: "",
-    img: "/assets/backgrounds/DSC_0110.jpg",
-  },
-  {
-    id: 3,
-    title: "Wade Cooper",
-    description: "",
-    img: "/assets/backgrounds/DSC_0208.jpg",
-  },
-  {
-    id: 4,
-    title: "Wade Cooper",
-    description: "",
-    img: "/assets/backgrounds/DSC_0234.jpg",
-  },
-];
-const packages = [
-  {
-    id: 1,
-    title: "Wade Cooper",
-    description: "",
-    img: "/assets/packages/DSC_0002.jpg",
-  },
-  {
-    id: 2,
-    title: "Wade Cooper",
-    description: "",
-    img: "/assets/packages/DSC_0062.jpg",
-  },
-  {
-    id: 3,
-    title: "Wade Cooper",
-    description: "",
-    img: "/assets/packages/DSC_0103.jpg",
-  },
-  {
-    id: 4,
-    title: "Wade Cooper",
-    description: "",
-    img: "/assets/packages/DSC_0133.jpg",
-  },
-];
 
 export default {
   props: {
@@ -436,10 +404,10 @@ export default {
     canRegister: Boolean,
     laravelVersion: String,
     phpVersion: String,
+    tours: Object,
   },
   components: {
     AppLayoutHome,
-    JetApplicationLogo,
     JetButton,
     JetInput,
     JetValidationErrors,
@@ -456,8 +424,6 @@ export default {
       newsletter: this.$inertia.form({
         email: "",
       }),
-
-      // items: {},
     };
   },
 
@@ -471,10 +437,7 @@ export default {
     },
   },
   setup() {
-    return {
-      items,
-      packages,
-    };
+    return {};
   },
 };
 </script>

@@ -14,7 +14,7 @@ class AddBookingIdToBookingsTable extends Migration
     public function up()
     {
         Schema::table('Bookings', function (Blueprint $table) {
-            $table->integer('booking_id')->after('id');
+            $table->string('booking_id')->after('id');
         });
     }
 
