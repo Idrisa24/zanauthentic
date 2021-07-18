@@ -6,7 +6,6 @@ use App\Models\Tour;
 use Inertia\Inertia;
 use App\Models\Package;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 
 class PackageController extends Controller
@@ -18,8 +17,17 @@ class PackageController extends Controller
      */
     public function index()
     {
-        $packages = Package::all();
-        return Inertia::render('Packages/Index',['packages' => $packages]);
+        // $packages = Package::all();
+        $packages = Package::with('tour')->get();
+
+        $data = [
+            'total' => Package::with('tour')->get()->count(),
+            'unpublished' => Package::where('package_status','=','unpublished')->with('tour')->get()->count(),
+            'published' => Package::where('package_status','=','published')->with('tour')->get()->count(),
+            'expired' => Package::where('package_status','=','expired')->with('tour')->get()->count(),
+        ];
+        return Inertia::render('Packages/Index',['packages' => $packages, 'data' => $data]);
+
     }
 
     /**
@@ -43,17 +51,19 @@ class PackageController extends Controller
     {
         Validator::make($request->all(), [
             'package_name' => ['required', 'string', 'max:255'],
-            'package_price' => ['required', 'string'],
+            'package_price' => ['required', 'integer'],
             'package_discription' => ['required'],
-            'tour_id' => ['required', 'string'],
-            'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
+            'tour_id' => ['required', 'array'],
+            'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1536000'],
         ])->validateWithBag('createnewpackage');
 
-        $packages =  Package::create([
+        // dd($request->all());
+
+        $package =  Package::create([
             'package_name' => $request['package_name'],
             'package_price' => $request['package_price'],
-            'package_discription' => $request['package_discription'],
-            'tour_id' => $request['tour_id'],
+            'package_description' => $request['package_discription'],
+            'tour_id' => $request['tour_id']['id'],
         ]);
 
         
@@ -74,7 +84,8 @@ class PackageController extends Controller
      */
     public function show(Package $package)
     {
-        //
+        $tours = Tour::all();
+        return Inertia::render('Packages/Show', ['package' => $package, 'tours' => $tours]);
     }
 
     /**
@@ -97,7 +108,32 @@ class PackageController extends Controller
      */
     public function update(Request $request, Package $package)
     {
-        //
+        Validator::make($request->all(), [
+            'package_name' => ['required', 'string', 'max:255'],
+            'package_price' => ['required', 'integer'],
+            'package_description' => ['required'],
+            'tour_id' => ['required', 'array'],
+            'package_status' => ['required', 'array'],
+            'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1536000'],
+        ])->validateWithBag('updatepackage');
+
+        $package = Package::findOrFail($package->id);
+
+        $package->package_name = $request->package_name;
+        $package->package_description = $request->package_description;
+        $package->tour_id = $request["tour_id"]["id"];
+        $package->package_price = $request->package_price;
+        $package->package_status = $request["package_status"]["value"];
+
+        if($package->update()){
+
+            if (isset($request['photo'])) {
+                $package->package_photo_path =  $request->photo->store('packages', 'public');
+                $package->update();
+            }
+
+            return redirect()->back();
+        }
     }
 
     /**
@@ -108,6 +144,19 @@ class PackageController extends Controller
      */
     public function destroy(Package $package)
     {
-        //
+        $destroy = Package::findOrFail($package->id)->delete();
+       if ($destroy) {
+        return redirect()->back();
+       }
+    }
+
+    public function deletePackahePhoto(Package $package)
+    {
+        $package = Package::findOrFail($package->id);
+
+        $package->package_photo_path = null;
+
+        if($package->update())
+        return redirect()->back();
     }
 }

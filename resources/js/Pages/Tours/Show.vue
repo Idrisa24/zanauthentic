@@ -2,7 +2,7 @@
   <app-layout>
     <template #header>
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        Tours / Create
+        Tours / Update
       </h2>
       <div class="font-semibold text-xl leading-tight float-right -mt-8">
         <jet-nav-link :href="route('tours.index')">
@@ -14,7 +14,7 @@
     <div class="py-12">
       <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
         <div class="md:grid md:grid-cols-24 md:gap-6">
-          <create-tour-form :tour="$page.props.tour" />
+          <update-tour-form :tour="$page.props.tour" />
         </div>
       </div>
     </div>
@@ -28,7 +28,7 @@ import JetButton from "@/Jetstream/Button";
 import JetNavLink from "@/Jetstream/NavLink";
 import JetTable from "@/Jetstream/Table";
 import JetSectionBorder from "@/Jetstream/SectionBorder";
-import CreateTourForm from "./CreateTourForm.vue";
+import UpdateTourForm from "./UpdateTourForm.vue";
 
 export default {
   components: {
@@ -38,7 +38,7 @@ export default {
     JetSectionBorder,
     JetTable,
     ArrowLeftIcon,
-    CreateTourForm,
+    UpdateTourForm,
   },
 };
 </script>

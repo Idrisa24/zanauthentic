@@ -16,15 +16,15 @@
     </section>
 
     <section
-      class="py-20 xl:bg-contain bg-top bg-no-repeat"
+      class="py-10 xl:bg-contain bg-top bg-no-repeat"
       style="background-image: url('assets/backgrounds/intersect.svg')"
     >
       <div class="container px-4 mx-auto">
         <div class="text-center mb-8">
           <h2 class="max-w-lg mx-auto mb-4 text-4xl font-bold font-heading">
-            <span wfd-id="164">Start saving time today and</span>
-            <span class="text-green-600">choose</span>
-            <span wfd-id="162">your best package</span>
+            <span>Start saving time today and</span>
+            <span class="text-green-600"> choose </span>
+            <span>your best package</span>
           </h2>
           <p class="max-w-sm mx-auto text-lg text-greenGray-400">
             Best for the family or studying tour's group
@@ -45,7 +45,7 @@
                 font-semibold
                 rounded
               "
-              >$70</span
+              >$55</span
             >
           </label>
         </div>
@@ -165,13 +165,13 @@
         </div>
       </div>
     </section>
-    <section>
+    <section class="pb-10 xl:bg-contain bg-top bg-no-repeat">
       <div class="container px-4 mx-auto">
         <div class="flex flex-wrap -mx-4 text-center">
           <div
             v-for="tour in tours"
             :key="tour.id"
-            class="w-full md:w-1/3 p-4 mb-4 md:mb-0"
+            class="w-full md:w-1/3 py-5 mx-5 mb-4 md:mt-0 bg-white rounded shadow"
           >
             <svg
               class="text-green-600 w-10 h-10 mx-auto mb-5"
@@ -213,24 +213,24 @@
                   rounded
                   mx-2
                 "
-                :href="route('tours.details', { tour: tour.id })"
+                href="javascript(0);"
+                @click.prevent="navigateTo(tour.id)"
                 >Detail</a
               >
               <a
                 class="
-                  block
-                  sm:inline-block
-                  py-4
-                  px-6
-                  mb-4
-                  sm:mb-0
-                  sm:mr-3
-                  text-xs text-white text-center
-                  font-semibold
-                  leading-none
-                  bg-blue-600
-                  hover:bg-blue-700
-                  rounded
+                  inline-block
+                py-3
+                px-6
+                mt-4
+                lg:mt-0
+                leading-none
+                text-white
+                bg-green-600
+                hover:bg-green-700
+                font-semibold
+                rounded
+                shadow
                 "
                 :href="route('booking.now')"
                 >Book Now</a
@@ -288,6 +288,10 @@ export default {
         onSuccess: () => this.form.reset(),
       });
     },
+
+    navigateTo(tour){
+      this.$inertia.visit(route('tours.details', { tour }))
+    }
   },
   setup() {
     const items = [

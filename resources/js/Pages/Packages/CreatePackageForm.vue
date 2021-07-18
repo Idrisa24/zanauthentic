@@ -18,7 +18,7 @@
         <jet-input-error :message="form.errors.package_name" class="mt-2" />
       </div>
       <div class="col-span-6 sm:col-span-4">
-        <Listbox as="div" v-model="selected">
+        <Listbox as="div" v-model="form.tour_id">
           <ListboxLabel class="block text-sm font-medium text-gray-700">
             Tour
           </ListboxLabel>
@@ -44,12 +44,12 @@
             >
               <span class="flex items-center">
                 <img
-                  :src="'/storage/' + selected.tour_photo_path"
+                  :src="'/storage/' + form.tour_id.tour_photo_path"
                   alt=""
                   class="flex-shrink-0 h-6 w-6 rounded-full"
                 />
                 <span class="ml-3 block truncate">{{
-                  selected.tour_name
+                  form.tour_id.tour_name
                 }}</span>
               </span>
               <span
@@ -142,9 +142,12 @@
       <div class="col-span-6 sm:col-span-4">
         <ckeditor
           :editor="editor"
-          v-model="editorData"
+          v-model="form.package_discription"
           :config="editorConfig"
+          ref="package_discription"
         ></ckeditor>
+        <jet-input-error :message="form.errors.tour_discription" class="mt-2" />
+
       </div>
       <div class="col-span-6 sm:col-span-4">
         <jet-label for="package_price" value="Package Price" />
@@ -298,15 +301,15 @@ export default {
   data() {
     return {
       form: this.$inertia.form({
-        _method: "POST",
+        _method: "PUT",
         package_name: "",
         package_price: "",
-        tour_id: this.selected.tour_id,
-        package_discription: "",
+        tour_id: this.selected,
+        package_discription: "<p>Descriptions go here.</p>",
         photo: null,
       }),
       editor: ClassicEditor,
-      editorData: "<p>Descriptions goes here.</p>",
+      editorData: "<p>Descriptions go here.</p>",
       editorConfig: {
         // The configuration of the editor.
       },
@@ -321,10 +324,21 @@ export default {
         this.form.photo = this.$refs.photo.files[0];
       }
 
+      
+
       this.form.post(route("packages.store"), {
         errorBag: "createnewpackage",
         preserveScroll: true,
-        onSuccess: () => this.clearPhotoFileInput(),
+        onSuccess: () => {
+          this.clearPhotoFileInput();
+          this.photoPreview = null;
+          this.form.reset();
+          this.$message({
+          showClose: true,
+          message: 'Package! Created successifully.',
+          type: 'success'
+        });
+        },
       });
     },
 

@@ -92,6 +92,7 @@
                     size="mini"
                     icon="el-icon-view"
                     circle
+                    @click="viewEnquery(scope.row.id)"
                   />
 
                   <el-popconfirm
@@ -106,7 +107,6 @@
                         icon="el-icon-delete"
                         circle
                       />
-                      <!-- <el-button type="text" size="small">Edit</el-button> -->
                     </template>
                   </el-popconfirm>
                 </template>
@@ -132,20 +132,16 @@ export default {
 
   data() {
     return {
-      form: this.$inertia.form({
-        enquery_id: "",
-      }),
+      
     };
   },
 
   methods: {
-    viewEnquery() {
-      this.form.post(this.route("enqueries.show"), {
-        errorBag: "userEnqueryHalndleInformation",
-        preserveScroll: true,
-        onSuccess: () => this.form.reset(),
+    viewEnquery(enquery){
+      this.$inertia.visit(route("enquery.show", { enquery }), {
+        method: "get",
       });
-    },
+    }
   },
 };
 </script>

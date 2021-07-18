@@ -32,7 +32,7 @@
       </div>
 
       <div class="mt-4">
-        <Listbox as="div" v-model="selected">
+        <Listbox as="div" v-model="form.package">
           <ListboxLabel class="block text-sm font-medium text-gray-700">
             Preferrable Package
           </ListboxLabel>
@@ -58,12 +58,12 @@
             >
               <span class="flex items-center">
                 <img
-                  :src="'/storage/' + selected.tour_photo_path"
+                  :src="'/storage/' + form.package.tour_photo_path"
                   alt=""
                   class="flex-shrink-0 h-6 w-6 rounded-full"
                 />
                 <span class="ml-3 block truncate">{{
-                  selected.tour_name
+                  form.package.tour_name
                 }}</span>
               </span>
               <span
@@ -107,6 +107,8 @@
                   focus:outline-none
                   sm:text-sm
                 "
+
+                @change.prevent="changeValue(selected)"
               >
                 <ListboxOption
                   as="template"
@@ -295,7 +297,7 @@ export default {
         full_name: "",
         email: "",
         quantity: 1,
-        package: this.selected.tour_name,
+        package: "",
         expected_date: "",
         booking_price: this.selected.tour_price,
         short_memo: "",
@@ -312,6 +314,9 @@ export default {
         onSuccess: () => this.form.reset(),
       });
     },
+    changeValue(value){
+      alert(value.tour_name)
+    }
   },
   setup(props) {
     const selected = ref(props.tours[0]);

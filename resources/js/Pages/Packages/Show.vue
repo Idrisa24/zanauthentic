@@ -2,7 +2,7 @@
   <app-layout>
     <template #header>
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        Packages / Create
+        Packages / Update
       </h2>
       <div class="font-semibold text-xl leading-tight float-right -mt-8">
         <jet-nav-link :href="route('packages.index')">
@@ -15,7 +15,7 @@
       <!-- <Create packages /> -->
       <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
         <div class="md:grid md:grid-cols-24 md:gap-6">
-          <create-package-form />
+          <update-package-form :tours="$page.props.tours" :package="$page.props.package"/>
         </div>
       </div>
     </div>
@@ -29,9 +29,10 @@ import JetButton from "@/Jetstream/Button";
 import JetNavLink from "@/Jetstream/NavLink";
 import JetTable from "@/Jetstream/Table";
 import JetSectionBorder from "@/Jetstream/SectionBorder";
-import CreatePackageForm from "./CreatePackageForm.vue";
+import UpdatePackageForm from "./UpdatePackageForm.vue";
 
 export default {
+  props:['tours', 'package'],
   components: {
     AppLayout,
     JetButton,
@@ -39,7 +40,7 @@ export default {
     JetSectionBorder,
     JetTable,
     ArrowLeftIcon,
-    CreatePackageForm,
+    UpdatePackageForm,
   },
 };
 </script>

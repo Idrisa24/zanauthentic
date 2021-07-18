@@ -17,6 +17,7 @@ class EnqueryController extends Controller
     public function index()
     {
         $enqueries = Enquery::all();
+        
         return Inertia::render('Enqueries/Index',['enqueries' => $enqueries]);
         
     }
@@ -64,7 +65,7 @@ class EnqueryController extends Controller
      */
     public function show(Enquery $enquery)
     {
-        dd('Imefika hiyo');
+       return Inertia::render('Enqueries/Show', ['enquery' => $enquery]);
     }
 
     /**

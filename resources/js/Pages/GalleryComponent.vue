@@ -1,61 +1,12 @@
 <template>
   <app-layout-home>
     <section class="pt-8 px-4 bg-white">
-      <div class="flex flex-wrap -mx-4 -mb-8" wfd-id="151">
-        <div class="md:w-1/4 px-4 mb-8">
+      <div class="flex flex-wrap -mx-4 -mb-8">
+        <div v-for="gallery in galleries"  :key="gallery" class="md:w-1/4 px-4 mb-8">
           <img
             class="rounded shadow"
-            src="/assets/backgrounds/DSC_0035.jpg"
-            alt=""
-          />
-        </div>
-        <div class="md:w-1/4 px-4 mb-8">
-          <img
-            class="rounded shadow"
-            src="/assets/backgrounds/DSC_0110.jpg"
-            alt=""
-          />
-        </div>
-        <div class="md:w-1/4 px-4 mb-8">
-          <img
-            class="rounded shadow"
-            src="/assets/backgrounds/DSC_0208.jpg"
-            alt=""
-          />
-        </div>
-        <div class="md:w-1/4 px-4 mb-8">
-          <img
-            class="rounded shadow"
-            src="/assets/backgrounds/DSC_0234.jpg"
-            alt=""
-          />
-        </div>
-        <div class="md:w-1/4 px-4 mb-8">
-          <img
-            class="rounded shadow"
-            src="/assets/packages/DSC_0002.jpg"
-            alt=""
-          />
-        </div>
-        <div class="md:w-1/4 px-4 mb-8">
-          <img
-            class="rounded shadow"
-            src="/assets/packages/DSC_0062.jpg"
-            alt=""
-          />
-        </div>
-        <div class="md:w-1/4 px-4 mb-8">
-          <img
-            class="rounded shadow"
-            src="/assets/packages/DSC_0103.jpg"
-            alt=""
-          />
-        </div>
-        <div class="md:w-1/4 px-4 mb-8">
-          <img
-            class="rounded shadow"
-            src="/assets/packages/DSC_0133.jpg"
-            alt=""
+            :src="'/storage/'+gallery.gallery_photo_path"
+            :alt="gallery.gallery_title"
           />
         </div>
       </div>
@@ -72,10 +23,7 @@ import JetValidationErrors from "@/Jetstream/ValidationErrors";
 
 export default {
   props: {
-    canLogin: Boolean,
-    canRegister: Boolean,
-    laravelVersion: String,
-    phpVersion: String,
+    galleries: Object
   },
   components: {
     AppLayoutHome,

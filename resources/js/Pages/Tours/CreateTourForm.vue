@@ -14,6 +14,7 @@
           type="text"
           class="mt-1 block w-full"
           v-model="form.tour_name"
+          ref="tour_name"
         />
         <jet-input-error :message="form.errors.tour_name" class="mt-2" />
       </div>
@@ -21,6 +22,7 @@
         <ckeditor
           :editor="editor"
           v-model="form.tour_discription"
+          ref="tour_discription"
           :config="editorConfig"
         />
         <jet-input-error :message="form.errors.tour_discription" class="mt-2" />
@@ -32,6 +34,8 @@
           type="text"
           class="mt-1 block w-full"
           v-model="form.tour_price"
+          ref="tour_price"
+
         />
         <jet-input-error :message="form.errors.tour_price" class="mt-2" />
       </div>
@@ -184,9 +188,15 @@ export default {
       this.form.post(route("tours.store"), {
         errorBag: "createnewtour",
         preserveScroll: true,
-        onSuccess: () => {
+        onSuccess: () =>{
           this.clearPhotoFileInput();
+          this.photoPreview = null;
           this.form.reset();
+          this.$message({
+          showClose: true,
+          message: 'Tour! Created successifully.',
+          type: 'success'
+        });
         },
       });
     },
@@ -207,16 +217,6 @@ export default {
       };
 
       reader.readAsDataURL(photo);
-    },
-
-    deletePhoto() {
-      this.$inertia.delete(route("current-user-photo.destroy"), {
-        preserveScroll: true,
-        onSuccess: () => {
-          this.photoPreview = null;
-          this.clearPhotoFileInput();
-        },
-      });
     },
 
     clearPhotoFileInput() {

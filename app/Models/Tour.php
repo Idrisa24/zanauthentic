@@ -42,5 +42,8 @@ class Tour extends Model
         'created_at' => 'datetime:d/m/Y H:m a',
     ];
 
-
+    public function packages()
+    {
+        return $this->hasMany(Package::class);
+    }
 }

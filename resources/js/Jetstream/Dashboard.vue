@@ -4614,7 +4614,6 @@
                   rounded
                   text-xs text-gray-500
                 "
-                wfd-id="271"
               >
                 <Listbox as="div" v-model="selected">
                   <div class="mt-1 relative">
@@ -4737,10 +4736,10 @@
                 </Listbox>
               </div>
             </div>
-            <div class="pt-4 px-6" wfd-id="258">
-              <div class="flex flex-wrap -m-4 pb-16" wfd-id="259">
-                <div class="w-full md:w-1/2 p-4" wfd-id="265">
-                  <div class="py-4 px-6 border rounded" wfd-id="266">
+            <div class="pt-4 px-6" >
+              <div class="flex flex-wrap -m-4 pb-16" >
+                <div class="w-full md:w-1/2 p-4" >
+                  <div class="py-4 px-6 border rounded">
                     <h4 class="text-xs text-gray-500">Earnings</h4>
                     <div class="flex items-center" wfd-id="267">
                       <span class="mr-2 text-3xl font-bold" wfd-id="269"

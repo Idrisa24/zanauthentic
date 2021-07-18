@@ -9,19 +9,19 @@
               Got any question? Let’s talk about it.
             </p>
           </div>
-          <div class="flex flex-wrap" wfd-id="260">
-            <div class="w-full lg:w-1/2 mb-16 lg:mb-0" wfd-id="280">
-              <div class="flex flex-wrap" wfd-id="281">
-                <div class="mb-12 w-full md:w-1/2 lg:w-1/2" wfd-id="285">
+          <div class="flex flex-wrap">
+            <div class="w-full lg:w-1/2 mb-16 lg:mb-0">
+              <div class="flex flex-wrap">
+                <div class="mb-12 w-full md:w-1/2 lg:w-1/2">
                   <h3 class="mb-2 text-3xl lg:text-4xl font-bold">Office</h3>
                   <p class="text-gray-400">Pete Zanzibar</p>
                   <p class="text-gray-400">Tanzania, TZ</p>
                 </div>
-                <div class="mb-12 w-full md:w-1/2" wfd-id="284">
+                <div class="mb-12 w-full md:w-1/2">
                   <h3 class="mb-2 text-3xl lg:text-4xl font-bold">Contacts</h3>
                   <p class="text-gray-400">info@zanauthentic.co.tz</p>
                 </div>
-                <div class="w-full md:w-1/3 lg:w-full" wfd-id="282">
+                <div class="w-full md:w-1/3 lg:w-full">
                   <h3 class="mb-2 text-3xl lg:text-4xl font-bold">Socials</h3>
                   <div class="flex">
                     <a class="mr-3" href="#">
@@ -226,7 +226,7 @@ export default {
         full_name: "",
         email: "",
         subject: "",
-        department: "",
+        department: "support",
         message: "",
       }),
       newsletter: this.$inertia.form({

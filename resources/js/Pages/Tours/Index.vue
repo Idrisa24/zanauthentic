@@ -24,7 +24,7 @@
                     <h3
                       class="text-3xl leading-tight font-heading font-semibold"
                     >
-                      448
+                      {{data.total}}
                     </h3>
                     <span class="leading-none">Total Tours</span>
                   </div>
@@ -38,9 +38,9 @@
                     <h3
                       class="text-3xl leading-tight font-heading font-semibold"
                     >
-                      81
+                      {{data.ended}}
                     </h3>
-                    <span class="leading-none">Canceled</span>
+                    <span class="leading-none">Ended</span>
                   </div>
                 </div>
               </div>
@@ -52,9 +52,9 @@
                     <h3
                       class="text-3xl leading-tight font-heading font-semibold"
                     >
-                      208
+                      {{data.active}}
                     </h3>
-                    <span class="leading-none">Finished</span>
+                    <span class="leading-none">Active</span>
                   </div>
                 </div>
               </div>
@@ -67,21 +67,60 @@
                     <h3
                       class="text-3xl leading-tight font-heading font-semibold"
                     >
-                      159
+                      {{data.inactive}}
                     </h3>
-                    <span class="leading-none">Peding</span>
+                    <span class="leading-none">Inactive</span>
                   </div>
                 </div>
               </div>
             </div>
             <el-table :data="tours" style="width: 100%">
-              <el-table-column fixed prop="id" label="#ID" width="300">
-              </el-table-column>
-              <el-table-column prop="tour_name" label="Full Name" width="150">
-              </el-table-column>
-              <el-table-column label="Description" width="500">
+              <el-table-column fixed prop="id" label="#ID" width="300"/>
+              <el-table-column prop="tour_name" label="Full Name" width="150" />
+              <el-table-column label="Description" width="300">
                 <template #default="scope">
                   <div v-html="scope.row.tour_description"></div>
+                </template>
+              </el-table-column>
+              <el-table-column prop="tour_price" label="Price"  />
+              <el-table-column label="Status">
+                <template #default="scope">
+                  <span
+                  v-if="scope.row.tour_status == 'active'"
+                    class="
+                      py-1
+                      px-3
+                      text-sm text-white
+                      font-semibold
+                      bg-green-500
+                      rounded-full
+                    ">
+                    {{scope.row.tour_status}}
+                    </span>
+                    <span
+                    v-else-if="scope.row.tour_status == 'inactive'"
+                    class="
+                      py-1
+                      px-3
+                      text-sm text-white
+                      font-semibold
+                      bg-gray-800
+                      rounded-full
+                    ">
+                    {{scope.row.tour_status}}
+                    </span>
+                    <span
+                    v-else
+                    class="
+                      py-1
+                      px-3
+                      text-sm text-white
+                      font-semibold
+                      bg-red-500
+                      rounded-full
+                    ">
+                    {{scope.row.tour_status}}
+                    </span>
                 </template>
               </el-table-column>
               <el-table-column label="Image">
@@ -89,7 +128,7 @@
                   <img
                     style="height: 50px; with: 100px"
                     :src="'/storage/' + scope.row.tour_photo_path"
-                    alt=""
+                    :alt="scope.row.tour_name"
                   />
                 </template>
               </el-table-column>
@@ -104,24 +143,16 @@
                     type="warning"
                     size="mini"
                     icon="el-icon-view"
+                    @click="viewTour(scope.row.id)"
                     circle
                   />
-
-                  <el-popconfirm
-                    confirmButtonText="OK"
-                    cancelButtonText="No, Thanks"
-                    title="Are you sure to delete this?"
-                  >
-                    <template #reference>
                       <el-button
                         type="danger"
                         size="mini"
                         icon="el-icon-delete"
                         circle
+                        @click.prevent="destroyTour(scope.row.id)"
                       />
-                      <!-- <el-button type="text" size="small">Edit</el-button> -->
-                    </template>
-                  </el-popconfirm>
                 </template>
               </el-table-column>
             </el-table>
@@ -139,12 +170,30 @@ import { ViewGridAddIcon } from "@heroicons/vue/solid";
 import JetNavLink from "@/Jetstream/NavLink";
 
 export default {
-  props: { tours: Object },
+  props: [ 'tours', 'data' ],
   components: {
     AppLayout,
     ViewGridAddIcon,
     JetNavLink,
     Tours,
   },
+  methods:{
+    viewTour(tour){
+      this.$inertia.visit(route("tour.show", { tour }), {
+        method: "get",
+      });
+    },
+
+    destroyTour(tour){
+      this.$inertia.delete(route("tour.destroy", {tour}), {
+        preserveScroll: true,
+        onSuccess: () => this.$message({
+          showClose: true,
+          message: 'Congrats, this is a success message.',
+          type: 'success'
+        }),
+      });
+    }
+  }
 };
 </script>

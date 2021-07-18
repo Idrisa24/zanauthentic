@@ -16,6 +16,14 @@ class Package extends Model
      * @var string
      */
     protected $keyType = 'string';
+    
+    protected $fillable = [
+        'package_name',
+        'package_price',
+        'package_description',
+        'tour_id',
+        'package_photo_path',
+    ];
 
     /**
      * Indicates if the IDs are auto-incrementing.
@@ -30,4 +38,11 @@ class Package extends Model
      * @var array
      */
     protected $guarded = [];
+
+
+    public function tour()
+    {
+        return $this->belongsTo(Tour::class);
+    }
+
 }

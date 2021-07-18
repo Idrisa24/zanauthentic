@@ -27,17 +27,15 @@
                     >New</span
                   >
                 </div>
-                <div class="flex flex-col p-4" wfd-id="98">
+                <div class="flex flex-col p-4">
                   <h3 class="text-3xl mb-3 font-heading font-semibold">
-                    108,200
+                    {{status.new}}
                   </h3>
-                  <span wfd-id="100">Total income</span>
-                  <span class="text-green-500" wfd-id="99">82%</span>
                 </div>
               </div>
             </div>
             <div class="w-full lg:w-1/4 px-4 mb-4 lg:mb-0">
-              <div class="h-full bg-white border rounded shadow" wfd-id="90">
+              <div class="h-full bg-white border rounded shadow">
                 <div
                   class="flex items-center justify-between px-4 py-3 border-b"
                   wfd-id="94"
@@ -57,10 +55,8 @@
                 </div>
                 <div class="flex flex-col p-4">
                   <h3 class="text-3xl mb-3 font-heading font-semibold">
-                    128,430
+                    {{status.completed}}
                   </h3>
-                  <span>New orders</span>
-                  <span class="text-green-500">32%</span>
                 </div>
               </div>
             </div>
@@ -85,18 +81,16 @@
                 </div>
                 <div class="flex flex-col p-4" wfd-id="84">
                   <h3 class="text-3xl mb-3 font-heading font-semibold">
-                    81,248
+                    {{status.pendding}}
                   </h3>
-                  <span wfd-id="86">New visits</span>
-                  <span class="text-green-500" wfd-id="85">24%</span>
                 </div>
               </div>
             </div>
             <div class="w-full lg:w-1/4 px-4 mb-4 lg:mb-0">
-              <div class="h-full bg-white border rounded shadow" wfd-id="76">
+              <div class="h-full bg-white border rounded shadow">
                 <div
                   class="flex items-center justify-between px-4 py-3 border-b"
-                  wfd-id="80"
+                  
                 >
                   <h3 class="text-lg font-semibold font-heading">Bookings</h3>
                   <span
@@ -108,24 +102,21 @@
                       bg-red-500
                       rounded-full
                     "
-                    wfd-id="81"
                     >Canceled</span
                   >
                 </div>
-                <div class="flex flex-col p-4" wfd-id="77">
-                  <h3 class="text-3xl mb-3 font-heading font-semibold">7%</h3>
-                  <span wfd-id="79">Purchased more than once</span>
-                  <span class="text-red-500">82%</span>
+                <div class="flex flex-col p-4">
+                  <h3 class="text-3xl mb-3 font-heading font-semibold">{{status.canceled}}</h3>
                 </div>
               </div>
             </div>
           </div>
           <el-table :data="bookings" style="width: 100%">
-            <el-table-column fixed prop="id" label="#ID" width="300" />
+            <el-table-column fixed prop="id" label="#ID" width="290" />
             <el-table-column prop="full_name" label="Full Name" width="150" />
             <el-table-column prop="email" label="Email" width="180" />
-            <el-table-column prop="package" label="Tour's name" width="120" />
-            <el-table-column prop="quantity" label="People" width="120" />
+            <el-table-column prop="package" label="Tour's name" width="130" />
+            <el-table-column prop="quantity" label="People" />
             <el-table-column prop="status" label="Status" width="120" />
             <el-table-column prop="booking_price" label="Price" />
             <el-table-column
@@ -180,6 +171,7 @@ import JetButton from "@/Jetstream/Button";
 export default {
   props: {
     bookings: Object,
+    status: Array,
   },
   components: {
     AppLayout,
@@ -199,7 +191,6 @@ export default {
       this.$inertia.visit(route("booking.show", { booking }), {
         method: "get",
       });
-      // alert(booking);
     },
   },
 };

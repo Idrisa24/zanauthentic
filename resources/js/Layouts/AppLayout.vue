@@ -47,6 +47,12 @@
                 >
                   Enqueries
                 </jet-nav-link>
+                <jet-nav-link
+                  :href="route('galleries.index')"
+                  :active="route().current('galleries.index')"
+                >
+                  Galleries
+                </jet-nav-link>
               </div>
             </div>
 

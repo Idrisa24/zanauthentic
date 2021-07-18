@@ -23,7 +23,15 @@ class BookingController extends Controller
     public function index()
     {
         $bookings = Booking::all();
-        return Inertia::render('Booking/Index',['bookings' => $bookings]);
+
+        $status = [
+            'new' => $new = Booking::where('status', '=', 'new')->count(),
+            'completed' => $completed = Booking::where('status', '=', 'completed')->count(),
+            'pendding' => $pendding = Booking::where('status', '=', 'pendding')->count(),
+            'canceled' => $canceled = Booking::where('status', '=', 'canceled')->count(),
+        ];
+        
+        return Inertia::render('Booking/Index',['bookings' => $bookings,'status' => $status]);
     }
 
     /**
@@ -53,7 +61,7 @@ class BookingController extends Controller
             'email' => ['required', 'string', 'email', 'max:255'],
             'quantity' => ['required', 'integer'],
             'booking_price' => ['required', 'integer'],
-            'package' => ['required', 'string', 'max:255'],
+            'package' => ['required','array'],
             'expected_date' => ['required', 'string', 'max:255'],
             'short_memo' => ['required', 'string'],
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
@@ -63,20 +71,18 @@ class BookingController extends Controller
             'full_name' => $request['full_name'],
             'email' => $request['email'],
             'quantity' => $request['quantity'],
-            'package' => $request['package'],
+            'package' => $request['package']['tour_name'],
             'booking_id' => $bookingId,
             'booking_price' => $request['booking_price'],
             'expected_date' => $request['expected_date'],
             'short_memo' => $request['short_memo'],
         ]);
 
-        $sent = Mail::to($booking->email)
+        // $sent = Mail::to($booking->email)
                     // ->bcc('info@zanauthentic.co.tz')
-                    ->send(new TourBooked($booking));
+                    // ->send(new TourBooked($booking));
 
-        // if ($sent) {
-            
-        // }
+       
 
 
         return Redirect()->back();
