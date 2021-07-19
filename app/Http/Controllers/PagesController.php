@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Gallery;
 use App\Models\Tour;
 use Inertia\Inertia;
+use App\Models\Slide;
+use App\Models\Gallery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 class PagesController extends Controller
@@ -13,7 +15,16 @@ class PagesController extends Controller
     public function index()
     {
         $tours = Tour::all();
-        return Inertia::render('Welcome',['tours' => $tours]);
+        $mains = DB::table('slides')
+                    ->where('slide_status', '=', 'published')
+                    ->where('slide_position', '=', 'main')
+                    ->get();
+        $subs = DB::table('slides')
+                    ->where('slide_status', '=', 'published')
+                    ->where('slide_position', '=', 'sub')
+                    ->get();
+
+        return Inertia::render('Welcome',['tours' => $tours, 'mains' => $mains, 'subs' => $subs]);
     }
 
     

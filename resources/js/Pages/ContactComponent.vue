@@ -20,6 +20,7 @@
                 <div class="mb-12 w-full md:w-1/2">
                   <h3 class="mb-2 text-3xl lg:text-4xl font-bold">Contacts</h3>
                   <p class="text-gray-400">info@zanauthentic.co.tz</p>
+                  <p class="text-gray-400">Tel:+2556579192024</p>
                 </div>
                 <div class="w-full md:w-1/3 lg:w-full">
                   <h3 class="mb-2 text-3xl lg:text-4xl font-bold">Socials</h3>

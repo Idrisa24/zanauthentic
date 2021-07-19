@@ -14,7 +14,11 @@ class CreateSlidesTable extends Migration
     public function up()
     {
         Schema::create('slides', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->string('slide_title')->nullable();
+            $table->string('slide_photo_path');
+            $table->enum('slide_status',['published', 'unpublished'])->default('unpublished');
+            $table->enum('slide_position',['main', 'sub'])->default('main');
             $table->timestamps();
         });
     }

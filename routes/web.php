@@ -4,6 +4,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\SlideController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EnqueryController;
@@ -55,12 +56,19 @@ Route::prefix('dashboard')->middleware(['auth:sanctum', 'verified'])->group(func
     Route::delete('package/{package}/delete', [PackageController::class, 'destroy'])->whereUuid('package')->middleware(['password.confirm'])->name('package.destroy');
     Route::put('package/store', [PackageController::class, 'store'])->middleware(['password.confirm'])->name('packages.store');
 
-    Route::get('galleries', [galleryController::class, 'index'])->middleware(['password.confirm'])->name('galleries.index');
-    Route::get('gallery/{gallery}/show', [galleryController::class, 'show'])->whereUuid('package')->middleware(['password.confirm'])->name('galleries.show');
-    Route::get('gallery/create', [galleryController::class, 'create'])->middleware(['password.confirm'])->name('galleries.create');
-    Route::post('gallery/store', [galleryController::class, 'store'])->middleware(['password.confirm'])->name('galleries.store');
+    Route::get('galleries', [GalleryController::class, 'index'])->middleware(['password.confirm'])->name('galleries.index');
+    Route::get('gallery/{gallery}/show', [GalleryController::class, 'show'])->whereUuid('package')->middleware(['password.confirm'])->name('galleries.show');
+    Route::get('gallery/create', [GalleryController::class, 'create'])->middleware(['password.confirm'])->name('galleries.create');
+    Route::post('gallery/store', [GalleryController::class, 'store'])->middleware(['password.confirm'])->name('galleries.store');
     Route::put('gallery/{gallery}/update', [GalleryController::class, 'update'])->middleware(['password.confirm'])->name('galleries.update');
-    Route::delete('gallery/{gallery}/destroy', [GalleryController::class, 'store'])->middleware(['password.confirm'])->name('packages.store');
+    Route::delete('gallery/{gallery}/destroy', [GalleryController::class, 'store'])->middleware(['password.confirm'])->name('galleries.destroy');
+
+    Route::get('slides', [SlideController::class, 'index'])->middleware(['password.confirm'])->name('slides.index');
+    Route::get('slide/{slide}/show', [SlideController::class, 'show'])->whereUuid('package')->middleware(['password.confirm'])->name('slides.show');
+    Route::get('slide/create', [SlideController::class, 'create'])->middleware(['password.confirm'])->name('slides.create');
+    Route::post('slide/store', [SlideController::class, 'store'])->middleware(['password.confirm'])->name('slides.store');
+    Route::put('slide/{slide}/update', [SlideController::class, 'update'])->middleware(['password.confirm'])->name('slides.update');
+    Route::delete('slide/{slide}/destroy', [SlideController::class, 'destroy'])->middleware(['password.confirm'])->name('packages.destroy');
 
 
 });

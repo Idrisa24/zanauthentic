@@ -241,7 +241,7 @@
                     <jet-dropdown-link :href="route('profile.show')">
                       Profile
                     </jet-dropdown-link>
-                    <jet-dropdown-link :href="route('profile.show')">
+                    <jet-dropdown-link :href="route('slides.index')">
                       Settings
                     </jet-dropdown-link>
 

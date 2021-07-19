@@ -6,10 +6,10 @@
         <el-carousel :interval="4000" type="card">
           <el-carousel-item
             class="text-center"
-            v-for="item in items"
-            :key="item.id"
+            v-for="main in mains"
+            :key="main.id"
           >
-            <img :src="item.img" class="w-full mx-auto" />
+            <img :src="'/storage/'+main.slide_photo_path" class="w-full mx-auto" />
           </el-carousel-item>
         </el-carousel>
       </div>
@@ -156,8 +156,8 @@
           >
             <div class="p-8 text-center">
               <el-carousel height="350px">
-                <el-carousel-item v-for="pack in packages" :key="pack.id">
-                  <img :src="pack.img" class="w-full mx-auto" />
+                <el-carousel-item v-for="sub in subs" :key="sub.id">
+                  <img :src="'/storage/'+sub.slide_photo_path" class="w-full mx-auto" />
                 </el-carousel-item>
               </el-carousel>
             </div>
@@ -258,6 +258,8 @@ export default {
     laravelVersion: String,
     phpVersion: String,
     tours: Object,
+    subs: Object,
+    mains: Object,
   },
   components: {
     AppLayoutHome,

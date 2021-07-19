@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
 use App\Models\Slide;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SlideController extends Controller
 {
@@ -14,7 +16,9 @@ class SlideController extends Controller
      */
     public function index()
     {
-        //
+        $slides = Slide::all();
+        
+        return Inertia::render('Settings/Index',['slides' => $slides]);
     }
 
     /**
@@ -24,7 +28,7 @@ class SlideController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Settings/Create');
     }
 
     /**
@@ -35,7 +39,23 @@ class SlideController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Validator::make($request->all(), [
+            'slide_title' => ['required', 'string', 'max:255'],
+            'slide_status' => ['required', 'array'],
+            'slide_position' => ['required', 'array'],
+            'photo' => ['required', 'mimes:jpg,jpeg,png', 'max:1536000'],
+        ])->validateWithBag('createnewslide');
+
+       $slide = Slide::create([
+            'slide_title' => $request->slide_title,
+            'slide_position' => $request['slide_position']['value'],
+            'slide_status' => $request['slide_status']['value'],
+            'slide_photo_path' => $request->photo->store('slides', 'public'),
+        ]);
+
+        if ($slide) {
+            return Redirect()->back();
+        }
     }
 
     /**
@@ -46,7 +66,7 @@ class SlideController extends Controller
      */
     public function show(Slide $slide)
     {
-        //
+        return Inertia::render('Settings/Show',['slide' => $slide]);
     }
 
     /**
@@ -69,7 +89,28 @@ class SlideController extends Controller
      */
     public function update(Request $request, Slide $slide)
     {
-        //
+        Validator::make($request->all(), [
+            'slide_title' => ['required', 'string', 'max:255'],
+            'slide_status' => ['required', 'array'],
+            'slide_position' => ['required', 'array'],
+            'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1536000'],
+        ])->validateWithBag('updateslide');
+
+        $slide = Slide::findOrFail($slide->id);
+
+        $slide->slide_title = $request->slide_title;
+        $slide->slide_status = $request['slide_status']['value'];
+        $slide->slide_position = $request['slide_position']['value'];
+
+        if($slide->update()){
+
+            if (isset($request['photo'])) {
+                $slide->slide_photo_path =  $request->photo->store('slides', 'public');
+                $slide->update();
+            }
+
+            return redirect()->back();
+        }
     }
 
     /**
