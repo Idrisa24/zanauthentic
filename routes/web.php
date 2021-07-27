@@ -34,6 +34,7 @@ Route::post('/enquery', [EnqueryController::class, 'store'])->name('enquery.stor
 Route::get('/gallery', [PagesController::class, 'gallery'])->name('ourgallery');
 Route::get('/invoice/show', [InvoiceController::class, 'show'])->name('invoice');
 Route::get('/invoice/{invoice}/download', [InvoiceController::class, 'download'])->name('download.invoice');
+Route::get('package/{package}/details', [PackageController::class, 'details'])->whereUuid('package')->name('packages.details');
 Route::get('/tours/{tour}/details', [TourController::class, 'details'])->name('tours.details');
 
 Route::prefix('dashboard')->middleware(['auth:sanctum', 'verified'])->group(function(){

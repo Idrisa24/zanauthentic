@@ -290,7 +290,6 @@ export default {
         onSuccess: () => {
           this.clearPhotoFileInput();
           this.photoPreview = null;
-          this.form.reset();
           this.$message({
           showClose: true,
           message: 'Gallery! Updated successifully.',

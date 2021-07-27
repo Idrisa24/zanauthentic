@@ -151,7 +151,31 @@ class TourController extends Controller
 
     public function details(Tour $tour)
     {
-        return Inertia::render('TourDetailPage', ['tour' => $tour]);
+        $tou = Tour::where('id','=',$tour->id)->with('packages')->get();
+        foreach ($tou as $key => $date) 
+        {
+            $data['id'] = $date->id;
+            $data['tour_name'] = $date->tour_name;
+            $data['tour_description'] = $date->tour_description;
+            $data['tour_price'] = $date->tour_price;
+            $data['tour_photo_path'] = $date->tour_photo_path;
+
+            if ($date->packages) {
+                foreach ($date->packages as $key => $value) {
+                    if ($value->package_status = 'published') {
+                        $data['packages'][$key]['id'] = $value->id;
+                        $data['packages'][$key]['package_photo_path'] = $value->package_photo_path;
+                        $data['packages'][$key]['package_name'] = $value->package_name;
+                        $data['packages'][$key]['package_price'] = $value->package_price;
+                        $data['packages'][$key]['package_description'] = $value->package_description;
+                    }
+
+                }
+            }
+        }
+        return Inertia::render('TourDetailPage', ['tour' => $data]);
+
+        // dd($tour);
     }
 
     public function deleteTourPhote(Tour $tour)

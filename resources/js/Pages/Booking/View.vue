@@ -34,44 +34,6 @@
         <div
           class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
         >
-          <dt class="text-sm font-medium text-gray-500">Short memo</dt>
-          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-            {{ detail.short_memo }}
-          </dd>
-        </div>
-        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-          <dt class="text-sm font-medium text-gray-500">Attachment</dt>
-          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-            <ul
-              class="border border-gray-200 rounded-md divide-y divide-gray-200"
-            >
-              <li
-                class="pl-3 pr-4 py-3 flex items-center justify-between text-sm"
-              >
-                <div class="w-0 flex-1 flex items-center">
-                  <PaperClipIcon
-                    class="flex-shrink-0 h-5 w-5 text-gray-400"
-                    aria-hidden="true"
-                  />
-                  <span class="ml-2 flex-1 w-0 truncate">
-                    resume_back_end_developer.pdf
-                  </span>
-                </div>
-                <div class="ml-4 flex-shrink-0">
-                  <a
-                    href="#"
-                    class="font-medium text-indigo-600 hover:text-indigo-500"
-                  >
-                    Download
-                  </a>
-                </div>
-              </li>
-            </ul>
-          </dd>
-        </div>
-        <div
-          class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
-        >
           <dt class="text-sm font-medium text-gray-500">Status</dt>
           <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
             <Listbox v-model="selectedStatus"
@@ -131,6 +93,45 @@
             </Listbox>
           </dd>
         </div>
+        <div
+          class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+        >
+          <dt class="text-sm font-medium text-gray-500">Short memo</dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            {{ detail.short_memo }}
+          </dd>
+        </div>
+        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">Attachment</dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <ul
+              class="border border-gray-200 rounded-md divide-y divide-gray-200"
+            >
+              <li
+                class="pl-3 pr-4 py-3 flex items-center justify-between text-sm"
+              >
+                <div class="w-0 flex-1 flex items-center">
+                  <PaperClipIcon
+                    class="flex-shrink-0 h-5 w-5 text-gray-400"
+                    aria-hidden="true"
+                  />
+                  <span class="ml-2 flex-1 w-0 truncate">
+                    resume_back_end_developer.pdf
+                  </span>
+                </div>
+                <div class="ml-4 flex-shrink-0">
+                  <a
+                    href="#"
+                    class="font-medium text-indigo-600 hover:text-indigo-500"
+                  >
+                    Download
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </dd>
+        </div>
+        
       </dl>
     </div>
   </div>
@@ -138,6 +139,9 @@
 
 <script>
 import { ref } from 'vue'
+import JetButton from "@/Jetstream/Button";
+import JetActionMessage from "@/Jetstream/ActionMessage";
+
 import {
   Listbox,
   ListboxLabel,
@@ -149,6 +153,13 @@ import { CheckIcon, SelectorIcon,  PaperClipIcon} from '@heroicons/vue/solid'
 
 export default {
   props: ["detail"],
+  data() {
+    return {
+      form: this.$inertia.form({
+        booking_status:""
+      })
+    }
+  },
   components: {
     Listbox,
     ListboxLabel,
@@ -158,20 +169,29 @@ export default {
     CheckIcon,
     SelectorIcon,
     PaperClipIcon,
+    JetButton,
+    JetActionMessage,
   },
   methods:{
     changeStatus:() =>{
       alert('changed');
     }
   },
-  setup() {
+  setup(props) {
+    let selectedStatus;
+
     const status = [
       { name: 'New', value: 'new' },
       { name: 'Pendding' , value: 'pendding'},
       { name: 'Completed' , value: 'completed'},
       { name: 'Canceled' , value: 'canceled'}
     ]
-    const selectedStatus = ref(status[0])
+
+    for (let index = 0; index < status.length; index++) {
+      if (status[index].value == props.detail.status) {
+        selectedStatus = status[index];
+      }
+    }
 
     return {
       status,

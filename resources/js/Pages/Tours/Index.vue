@@ -79,7 +79,7 @@
               <el-table-column prop="tour_name" label="Full Name" width="150" />
               <el-table-column label="Description" width="300">
                 <template #default="scope">
-                  <div v-html="scope.row.tour_description"></div>
+                  <div class="line-clamp-3" v-html="scope.row.tour_description"></div>
                 </template>
               </el-table-column>
               <el-table-column prop="tour_price" label="Price"  />

@@ -150,6 +150,11 @@ class PackageController extends Controller
        }
     }
 
+    public function details(Package $package)
+    {
+        return Inertia::render('PackageDetails.vue', ['packa' => $package]);
+    }
+
     public function deletePackahePhoto(Package $package)
     {
         $package = Package::findOrFail($package->id);
