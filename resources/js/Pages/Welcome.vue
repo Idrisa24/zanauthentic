@@ -166,12 +166,12 @@
       </div>
     </section>
     <section class="pb-10 xl:bg-contain bg-top bg-no-repeat">
-      <div class="container px-4 mx-auto">
-        <div class="flex flex-wrap -mx-4 text-center">
+      <div class="container  mx-auto">
+        <div class="flex flex-wrap mx-2 text-center">
           <div
             v-for="tour in tours"
             :key="tour.id"
-            class="w-full md:w-1/3 py-5 mx-5 mb-4 md:mt-0 bg-white rounded shadow"
+            class="w-full md:w-1/3 py-5 mb-4 md:mt-0 bg-white rounded shadow"
           >
             <svg
               class="text-green-600 w-10 h-10 mx-auto mb-5"
@@ -190,7 +190,7 @@
             <span class="uppercase font-semibold">{{ tour.tour_name }}</span>
             <p
               v-html="tour.tour_description"
-              class="line-clamp-2 mt-4 mb-6 text-gray-400 leading-relaxed"
+              class="line-clamp-2 mt-4 mx-3 mb-6 text-gray-400 leading-relaxed"
             ></p>
             <h3 class="text-4xl mb-6 font-heading font-semibold">
               ${{ tour.tour_price }}
@@ -219,7 +219,7 @@
               >
               <a
                 class="
-                  inline-block
+                inline-block
                 py-3
                 px-6
                 mt-4

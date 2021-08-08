@@ -75,7 +75,6 @@
                             <?php $c = 1; ?>
                            
                             @foreach ($packages as $package)
-                            
                                 <tr>
                                     <td class="no"><?php echo $c++?></td>
                                     <td class="text-left"><h3>
@@ -90,8 +89,7 @@
                                     <td class="qty">{{$booking->quantity}}</td>
                                     <td class="qty">{{$booking->expected_date}}</td>
                                     <td class="total">${{$package->package_price * $booking->quantity}}</td>
-                                </tr>
-                                
+                                </tr> 
                             @endforeach
                         </tbody>
                         <tfoot>
