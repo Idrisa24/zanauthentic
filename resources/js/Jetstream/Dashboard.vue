@@ -19,7 +19,7 @@
                   ></path>
                 </svg>
               </span>
-              <h3 class="text-sm text-gray-600">Responses</h3>
+              <h3 class="text-sm text-gray-600"><a :href="route('enqueries.index')">Enqueries</a></h3>
               <span
                 class="
                   inline-block
@@ -30,13 +30,13 @@
                   bg-gray-50
                   rounded-full
                 "
-                wfd-id="195"
-                >30 Days</span
+              
+                >All Days</span
               >
             </div>
-            <h2 class="mb-2 text-3xl font-bold">1 450</h2>
-            <span class="text-xs text-red-500" wfd-id="191">
-              <span class="inline-block mr-2" wfd-id="193">
+            <h2 class="mb-2 text-3xl font-bold">{{details.enqueries}}</h2>
+            <span class="text-xs text-red-500">
+              <span class="inline-block mr-2">
                 <svg
                   width="18"
                   height="10"
@@ -50,14 +50,14 @@
                   ></path>
                 </svg>
               </span>
-              <span wfd-id="192">25% less</span>
+              <span>25% less</span>
             </span>
           </div>
         </div>
-        <div class="w-full md:w-1/2 lg:w-1/4 p-4" wfd-id="181">
-          <div class="p-6 rounded bg-white" wfd-id="182">
-            <div class="flex mb-2" wfd-id="186">
-              <span class="inline-block mr-2" wfd-id="188">
+        <div class="w-full md:w-1/2 lg:w-1/4 p-4">
+          <div class="p-6 rounded bg-white">
+            <div class="flex mb-2">
+              <span class="inline-block mr-2">
                 <svg
                   width="18"
                   height="16"
@@ -71,7 +71,7 @@
                   ></path>
                 </svg>
               </span>
-              <h3 class="text-sm text-gray-600">Projects</h3>
+              <h3 class="text-sm text-gray-600"><a :href="route('tours.index')">Tours</a></h3>
               <span
                 class="
                   inline-block
@@ -82,13 +82,13 @@
                   bg-gray-50
                   rounded-full
                 "
-                wfd-id="187"
-                >30 Days</span
+              
+                >All Days</span
               >
             </div>
-            <h2 class="mb-2 text-3xl font-bold">54</h2>
-            <span class="text-xs text-green-500" wfd-id="183">
-              <span class="inline-block mr-2" wfd-id="185">
+            <h2 class="mb-2 text-3xl font-bold">{{details.tours}}</h2>
+            <span class="text-xs text-green-500">
+              <span class="inline-block mr-2">
                 <svg
                   width="18"
                   height="10"
@@ -102,14 +102,14 @@
                   ></path>
                 </svg>
               </span>
-              <span wfd-id="184">25% more</span>
+              <span>25% more</span>
             </span>
           </div>
         </div>
-        <div class="w-full md:w-1/2 lg:w-1/4 p-4" wfd-id="173">
-          <div class="p-6 rounded bg-white" wfd-id="174">
-            <div class="flex mb-2" wfd-id="178">
-              <span class="inline-block mr-2" wfd-id="180">
+        <div class="w-full md:w-1/2 lg:w-1/4 p-4">
+          <div class="p-6 rounded bg-white">
+            <div class="flex mb-2">
+              <span class="inline-block mr-2">
                 <svg
                   width="14"
                   height="18"
@@ -123,7 +123,7 @@
                   ></path>
                 </svg>
               </span>
-              <h3 class="text-sm text-gray-600">Reports</h3>
+              <h3 class="text-sm text-gray-600"><a :href="route('packages.index')">Packages</a></h3>
               <span
                 class="
                   inline-block
@@ -134,13 +134,13 @@
                   bg-gray-50
                   rounded-full
                 "
-                wfd-id="179"
-                >30 Days</span
+              
+                >All Days</span
               >
             </div>
-            <h2 class="mb-2 text-3xl font-bold">492</h2>
-            <span class="text-xs text-green-500" wfd-id="175">
-              <span class="inline-block mr-2" wfd-id="177">
+            <h2 class="mb-2 text-3xl font-bold">{{details.packages}}</h2>
+            <span class="text-xs text-green-500">
+              <span class="inline-block mr-2">
                 <svg
                   width="18"
                   height="10"
@@ -154,14 +154,14 @@
                   ></path>
                 </svg>
               </span>
-              <span wfd-id="176">12.5% more</span>
+              <span>12.5% more</span>
             </span>
           </div>
         </div>
-        <div class="w-full md:w-1/2 lg:w-1/4 p-4" wfd-id="165">
-          <div class="p-6 rounded bg-white" wfd-id="166">
-            <div class="flex mb-2" wfd-id="170">
-              <span class="inline-block mr-2" wfd-id="172">
+        <div class="w-full md:w-1/2 lg:w-1/4 p-4">
+          <div class="p-6 rounded bg-white">
+            <div class="flex mb-2">
+              <span class="inline-block mr-2">
                 <svg
                   width="18"
                   height="18"
@@ -175,7 +175,7 @@
                   ></path>
                 </svg>
               </span>
-              <h3 class="text-sm text-gray-600">Users</h3>
+              <h3 class="text-sm text-gray-600"><a :href="route('booking.index')">Bookings</a></h3>
               <span
                 class="
                   inline-block
@@ -186,13 +186,13 @@
                   bg-gray-50
                   rounded-full
                 "
-                wfd-id="171"
-                >30 Days</span
+              
+                >All Days</span
               >
             </div>
-            <h2 class="mb-2 text-3xl font-bold">235</h2>
-            <span class="text-xs text-red-500" wfd-id="167">
-              <span class="inline-block mr-2" wfd-id="169">
+            <h2 class="mb-2 text-3xl font-bold">{{details.bookings}}</h2>
+            <span class="text-xs text-red-500">
+              <span class="inline-block mr-2">
                 <svg
                   width="18"
                   height="10"
@@ -206,14 +206,14 @@
                   ></path>
                 </svg>
               </span>
-              <span wfd-id="168">25% less</span>
+              <span>25% less</span>
             </span>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <section class="py-4">
+  <!-- <section class="py-4">
     <div class="container px-4 mx-auto">
       <div class="flex flex-wrap -mx-4 items-stre">
         <div class="w-full lg:w-2/3 px-4 lg:mb-0">
@@ -224,7 +224,7 @@
               </h3>
               <div
                 class="ml-auto inline-flex text-xs text-gray-500"
-                wfd-id="226"
+              
               >
                 <span class="mr-2">
                   <svg
@@ -245,7 +245,7 @@
                     ></path>
                   </svg>
                 </span>
-                <span wfd-id="227">New visitors</span>
+                <span>New visitors</span>
               </div>
               <div class="ml-6 inline-flex text-xs text-gray-500">
                 <span class="mr-2">
@@ -267,14 +267,14 @@
                     ></path>
                   </svg>
                 </span>
-                <span wfd-id="224">Total visitors</span>
+                <span>Total visitors</span>
               </div>
             </div>
             <div
               class="chart px-2"
               data-type="columns-thin"
               data-variant="orange"
-              wfd-id="214"
+            
               style="min-height: 315px"
             >
               <div
@@ -284,7 +284,7 @@
                   apexchartsio7g28kk
                   apexcharts-theme-light
                 "
-                wfd-id="215"
+              
                 style="width: 723px; height: 300px"
               >
                 <svg
@@ -1201,15 +1201,15 @@
                 <div
                   class="apexcharts-legend"
                   style="max-height: 150px"
-                  wfd-id="221"
+                
                 ></div>
                 <div
                   class="apexcharts-tooltip apexcharts-theme-light"
-                  wfd-id="217"
+                
                 >
                   <div
                     class="apexcharts-tooltip-title"
-                    wfd-id="220"
+                  
                     style="
                       font-family: Helvetica, Arial, sans-serif;
                       font-size: 12px;
@@ -1217,7 +1217,7 @@
                   ></div>
                   <div
                     class="apexcharts-tooltip-series-group"
-                    wfd-id="219"
+                  
                     style="order: 1"
                   >
                     <span
@@ -1249,7 +1249,7 @@
                   </div>
                   <div
                     class="apexcharts-tooltip-series-group"
-                    wfd-id="218"
+                  
                     style="order: 2"
                   >
                     <span
@@ -1297,14 +1297,14 @@
         <div class="w-full lg:w-1/3 px-4">
           <div
             class="pt-5 pb-16 px-6 bg-white rounded"
-            wfd-id="201"
+          
             style="position: relative"
           >
             <h3 class="text-xl font-bold mb-12">Social Media Traffic</h3>
             <div
               class="chart px-2"
               data-type="radial-bar-part"
-              wfd-id="208"
+            
               style="min-height: 121.417px"
             >
               <div
@@ -1314,7 +1314,7 @@
                   apexchartslrp0yu12l
                   apexcharts-theme-light
                 "
-                wfd-id="209"
+              
                 style="width: 289px; height: 121.417px"
               >
                 <svg
@@ -1462,7 +1462,7 @@
                   </g>
                   <g id="SvgjsG1304" class="apexcharts-annotations"></g>
                 </svg>
-                <div class="apexcharts-legend" wfd-id="210"></div>
+                <div class="apexcharts-legend"></div>
               </div>
             </div>
             <div
@@ -1479,16 +1479,16 @@
                 mb-8
                 text-xl
               "
-              wfd-id="207"
+            
             >
               😊
             </div>
-            <div class="text-center" wfd-id="203">
+            <div class="text-center">
               <h4 class="mb-2 text-4xl font-bold text-indigo-500">14%</h4>
-              <div class="text-center" wfd-id="204">
+              <div class="text-center">
                 <span
                   class="mr-2 text-sm font-medium text-gray-500"
-                  wfd-id="206"
+                
                   >Social Media Rate</span
                 >
                 <span
@@ -1499,7 +1499,7 @@
                     rounded-full
                     text-xs text-green-500
                   "
-                  wfd-id="205"
+                
                   >Good</span
                 >
               </div>
@@ -1512,7 +1512,7 @@
   <section class="py-4">
     <div class="container px-4 mx-auto">
       <div class="bg-white rounded" style="position: relative">
-        <div class="flex flex-wrap items-center py-5 px-6" wfd-id="240">
+        <div class="flex flex-wrap items-center py-5 px-6">
           <h3 class="w-full md:w-auto mb-4 md:mb-0 text-2xl font-bold">
             Daily Visitiors
           </h3>
@@ -1774,13 +1774,13 @@
         <div
           class="chart p-6"
           data-type="columns"
-          wfd-id="233"
+        
           style="min-height: 215px"
         >
           <div
             id="apexchartscntyr5xrk"
             class="apexcharts-canvas apexchartscntyr5xrk apexcharts-theme-light"
-            wfd-id="234"
+          
             style="width: 1076px; height: 200px"
           >
             <svg
@@ -3737,12 +3737,12 @@
             <div
               class="apexcharts-legend"
               style="max-height: 100px"
-              wfd-id="239"
+            
             ></div>
-            <div class="apexcharts-tooltip apexcharts-theme-light" wfd-id="236">
+            <div class="apexcharts-tooltip apexcharts-theme-light">
               <div
                 class="apexcharts-tooltip-title"
-                wfd-id="238"
+              
                 style="
                   font-family: Helvetica, Arial, sans-serif;
                   font-size: 12px;
@@ -3750,7 +3750,7 @@
               ></div>
               <div
                 class="apexcharts-tooltip-series-group"
-                wfd-id="237"
+              
                 style="order: 1"
               >
                 <span
@@ -3786,7 +3786,7 @@
                 apexcharts-yaxistooltip-right
                 apexcharts-theme-light
               "
-              wfd-id="235"
+            
             >
               <div class="apexcharts-yaxistooltip-text"></div>
             </div>
@@ -3796,13 +3796,13 @@
     </div>
   </section>
   <section class="py-4">
-    <div class="container px-4 mx-auto" wfd-id="246">
-      <div class="flex flex-wrap -m-4" wfd-id="247">
-        <div class="w-full lg:w-1/2 p-4" wfd-id="273">
-          <div class="p-6 mb-8 bg-white shadow rounded" wfd-id="288">
-            <div class="flex mb-3 items-center justify-between" wfd-id="294">
+    <div class="container px-4 mx-auto">
+      <div class="flex flex-wrap -m-4">
+        <div class="w-full lg:w-1/2 p-4">
+          <div class="p-6 mb-8 bg-white shadow rounded">
+            <div class="flex mb-3 items-center justify-between">
               <h3 class="text-gray-500">Total Income</h3>
-              <button class="focus:outline-none" wfd-id="296">
+              <button class="focus:outline-none">
                 <svg
                   class="h-4 w-4 text-gray-200"
                   viewBox="0 0 16 4"
@@ -3816,8 +3816,8 @@
                 </svg>
               </button>
             </div>
-            <div class="flex items-center mb-3" wfd-id="291">
-              <span class="text-4xl font-bold" wfd-id="293">$124,563.00</span>
+            <div class="flex items-center mb-3">
+              <span class="text-4xl font-bold">$124,563.00</span>
               <span
                 class="
                   inline-block
@@ -3828,29 +3828,29 @@
                   text-white text-xs
                   rounded-full
                 "
-                wfd-id="292"
+              
                 >+6.9%</span
               >
             </div>
             <div
               class="relative w-full h-1 mb-2 bg-gray-50 rounded"
-              wfd-id="289"
+            
             >
               <div
                 class="absolute top-0 left-0 w-4/6 h-full bg-purple-500 rounded"
-                wfd-id="290"
+              
               ></div>
             </div>
             <p class="text-xs text-gray-200">Yearly Goal</p>
           </div>
           <div
             class="p-6 bg-white shadow rounded"
-            wfd-id="274"
+          
             style="position: relative"
           >
-            <div class="flex mb-3 items-center justify-between" wfd-id="287">
+            <div class="flex mb-3 items-center justify-between">
               <h3 class="text-gray-500">New Users</h3>
-              <button class="focus:outline-none" wfd-id="295">
+              <button class="focus:outline-none">
                 <svg
                   class="h-4 w-4 text-gray-200"
                   viewBox="0 0 16 4"
@@ -3864,8 +3864,8 @@
                 </svg>
               </button>
             </div>
-            <div class="flex items-center mb-3" wfd-id="284">
-              <span class="text-4xl font-bold" wfd-id="286">94.2%</span>
+            <div class="flex items-center mb-3">
+              <span class="text-4xl font-bold">94.2%</span>
               <span
                 class="
                   inline-block
@@ -3876,14 +3876,14 @@
                   text-white text-xs
                   rounded-full
                 "
-                wfd-id="285"
+              
                 >+6.9%</span
               >
             </div>
             <div
               class="chart"
               data-type="columns-stacked"
-              wfd-id="276"
+            
               style="min-height: 100px"
             >
               <div
@@ -3893,7 +3893,7 @@
                   apexchartsl72f5oi4j
                   apexcharts-theme-light
                 "
-                wfd-id="277"
+              
                 style="width: 498px; height: 100px"
               >
                 <svg
@@ -4506,15 +4506,15 @@
                 <div
                   class="apexcharts-legend"
                   style="max-height: 50px"
-                  wfd-id="283"
+                
                 ></div>
                 <div
                   class="apexcharts-tooltip apexcharts-theme-light"
-                  wfd-id="279"
+                
                 >
                   <div
                     class="apexcharts-tooltip-title"
-                    wfd-id="282"
+                  
                     style="
                       font-family: Helvetica, Arial, sans-serif;
                       font-size: 12px;
@@ -4522,7 +4522,7 @@
                   ></div>
                   <div
                     class="apexcharts-tooltip-series-group"
-                    wfd-id="281"
+                  
                     style="order: 1"
                   >
                     <span
@@ -4554,7 +4554,7 @@
                   </div>
                   <div
                     class="apexcharts-tooltip-series-group"
-                    wfd-id="280"
+                  
                     style="order: 2"
                   >
                     <span
@@ -4592,7 +4592,7 @@
                     apexcharts-yaxistooltip-left
                     apexcharts-theme-light
                   "
-                  wfd-id="278"
+                
                 >
                   <div class="apexcharts-yaxistooltip-text"></div>
                 </div>
@@ -4601,8 +4601,8 @@
           </div>
         </div>
         <div class="w-full lg:w-1/2 p-4">
-          <div class="bg-white rounded" wfd-id="249" style="position: relative">
-            <div class="flex items-center py-5 px-6 border-b" wfd-id="270">
+          <div class="bg-white rounded" style="position: relative">
+            <div class="flex items-center py-5 px-6 border-b">
               <h3 class="text-2xl font-bold">Balance</h3>
               <div
                 class="
@@ -4741,8 +4741,8 @@
                 <div class="w-full md:w-1/2 p-4" >
                   <div class="py-4 px-6 border rounded">
                     <h4 class="text-xs text-gray-500">Earnings</h4>
-                    <div class="flex items-center" wfd-id="267">
-                      <span class="mr-2 text-3xl font-bold" wfd-id="269"
+                    <div class="flex items-center">
+                      <span class="mr-2 text-3xl font-bold"
                         >43.41%</span
                       >
                       <span
@@ -4753,17 +4753,17 @@
                           text-xs text-white
                           rounded-full
                         "
-                        wfd-id="268"
+                      
                         >+2.5%</span
                       >
                     </div>
                   </div>
                 </div>
-                <div class="w-full md:w-1/2 p-4" wfd-id="260">
-                  <div class="py-4 px-6 border rounded" wfd-id="261">
+                <div class="w-full md:w-1/2 p-4">
+                  <div class="py-4 px-6 border rounded">
                     <h4 class="text-xs text-gray-500">Sales Value</h4>
-                    <div class="flex items-center" wfd-id="262">
-                      <span class="mr-2 text-3xl font-bold" wfd-id="264"
+                    <div class="flex items-center">
+                      <span class="mr-2 text-3xl font-bold"
                         >$95,422</span
                       >
                       <span
@@ -4774,7 +4774,7 @@
                           text-xs text-white
                           rounded-full
                         "
-                        wfd-id="263"
+                      
                         >+13.5%</span
                       >
                     </div>
@@ -4785,7 +4785,7 @@
             <div
               class="chart"
               data-type="area"
-              wfd-id="251"
+            
               style="min-height: 180px"
             >
               <div
@@ -4795,7 +4795,7 @@
                   apexcharts17uvtany
                   apexcharts-theme-light
                 "
-                wfd-id="252"
+              
                 style="width: 546px; height: 180px"
               >
                 <svg
@@ -5095,15 +5095,15 @@
                 <div
                   class="apexcharts-legend"
                   style="max-height: 90px"
-                  wfd-id="257"
+                
                 ></div>
                 <div
                   class="apexcharts-tooltip apexcharts-theme-light"
-                  wfd-id="254"
+                
                 >
                   <div
                     class="apexcharts-tooltip-title"
-                    wfd-id="256"
+                  
                     style="
                       font-family: Helvetica, Arial, sans-serif;
                       font-size: 12px;
@@ -5111,7 +5111,7 @@
                   ></div>
                   <div
                     class="apexcharts-tooltip-series-group"
-                    wfd-id="255"
+                  
                     style="order: 1"
                   >
                     <span
@@ -5149,7 +5149,7 @@
                     apexcharts-yaxistooltip-left
                     apexcharts-theme-light
                   "
-                  wfd-id="253"
+                
                 >
                   <div class="apexcharts-yaxistooltip-text"></div>
                 </div>
@@ -5159,7 +5159,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 </template>
 
 <script>
@@ -5237,6 +5237,7 @@ const people = [
 ];
 
 export default {
+  props:["details"],
   components: {
     Listbox,
     ListboxButton,

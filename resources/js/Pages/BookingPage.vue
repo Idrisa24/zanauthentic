@@ -32,6 +32,17 @@
       </div>
 
       <div class="mt-4">
+        <jet-label for="address" value="Physical Address" />
+        <jet-input
+          id="address"
+          type="text"
+          class="mt-1 block w-full"
+          v-model="form.address"
+          required
+        />
+      </div>
+
+      <div class="mt-4">
         <Listbox as="div" v-model="form.package">
           <ListboxLabel class="block text-sm font-medium text-gray-700">
             Preferrable Package
@@ -297,6 +308,7 @@ export default {
         full_name: "",
         email: "",
         quantity: 1,
+        address: "",
         package: "",
         expected_date: "",
         booking_price: this.selected.tour_price,

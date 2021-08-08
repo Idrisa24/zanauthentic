@@ -264,6 +264,8 @@
               Contacts
             </p>
             <p class="lg:text-lg text-greenGray-400">info@zanauthentic.co.tz</p>
+            <p class="lg:text-lg text-greenGray-400">+255(0) 679-192-024</p>
+            <p class="lg:text-lg text-greenGray-400">+255(0) 652-971-375</p>
           </div>
         </div>
         <div
@@ -278,7 +280,7 @@
               Msungi Tech</a
             >.
           </p>
-          <div class="order-first lg:order-last -mx-2 mb-4 lg:mb-0" wfd-id="7">
+          <div class="order-first lg:order-last -mx-2 mb-4 lg:mb-0">
             <!-- <a class="inline-block px-2" href="#"
               ><img src="/assets/icons/facebook-green.svg" alt="" /></a
             ><a class="inline-block px-2" href="#"

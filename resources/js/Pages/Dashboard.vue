@@ -7,7 +7,7 @@
     </template>
 
     <div class="py-12">
-      <dashboard />
+      <dashboard :details="$page.props.details" />
     </div>
   </app-layout>
 </template>

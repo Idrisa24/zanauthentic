@@ -4,6 +4,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
@@ -16,29 +18,29 @@
 
         <div class="toolbar hidden-print">
             <div class="text-right">
-                <button id="printInvoice" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
-                <button class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Export as PDF</button>
+                <button onclick="printContent(document.getElementById('printhere'))" id="printInvoice" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
+                <button class="btn btn-info"><a href="{{route('download.invoice', ['invoice' => $booking->id])}}"><i class="fa fa-file-pdf-o"></i> Export as PDF</a></button>
             </div>
             <hr>
         </div>
-        <div class="invoice overflow-auto">
+        <div  id="printhere" class="printhere invoice overflow-auto">
             <div style="min-width: 600px">
                 <header>
                     <div class="row">
                         <div class="col">
                             <a target="_blank" href="{{route('nyumbani')}}">
-                                <img src="{{asset('assets/logo/ZAN-AUTHENTIC-01.png')}}" height="150" width="200" data-holder-rendered="true" />
-
+                                <img src="{{asset('assets/logo/ZAN-AUTHENTIC-01.png')}}" height="90" width="120" data-holder-rendered="true" />
                             </a>
                         </div>
-                        <div class="col company-details">
+                        <div class="col company-details" >
                             <h2 class="name">
-                                <a target="_blank" href="{{route('nyumbani')}}">
+                            <a target="_blank" href="{{route('nyumbani')}}">
                                 Zan Authentic
-                                </a>
+                            </a>
                             </h2>
                             <div>Pete Zanzibar, TZ</div>
                             <div>+255(0) 679-192-024</div>
+                            <div>+255(0) 652-971-375</div>
                             <div>info@zanauthentic.co.tz</div>
                         </div>
                     </div>
@@ -47,95 +49,83 @@
                     <div class="row contacts">
                         <div class="col invoice-to">
                             <div class="text-gray-light">INVOICE TO:</div>
-                            <h2 class="to">John Doe</h2>
-                            <div class="address">796 Silver Harbour, TX 79273, US</div>
-                            <div class="email"><a href="mailto:john@example.com">john@example.com</a></div>
+                            <h2 class="to">{{$booking->full_name}}</h2>
+                            <div class="address">{{$booking->address}}</div>
+                            <div class="email"><a href="mailto:{{$booking->email}}">{{$booking->email}}</a></div>
                         </div>
                         <div class="col invoice-details">
                             <h1 class="invoice-id">INVOICE</h1>
-                            <div class="date">Date of Invoice: 01/10/2018</div>
-                            <div class="date">Due Date: 30/10/2018</div>
+                            <div class="date">Date of Invoice: {{$booking->updated_at}}</div>
+                            <div class="date">Due Date: {{$booking->created_at}}</div>
                         </div>
                     </div>
                     <table border="0" cellspacing="0" cellpadding="0">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th class="text-left">DESCRIPTION</th>
-                                <th class="text-right">HOUR PRICE</th>
-                                <th class="text-right">HOURS</th>
+                                <th class="text-left">PACKAGE'S NAME && DESCRIPTION</th>
+                                <th class="text-right">PRICE</th>
+                                <th class="text-right"></th>
+                                <th class="text-right">PEOPLE</th>
+                                <th class="text-right">DATE</th>
                                 <th class="text-right">TOTAL</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="no">04</td>
-                                <td class="text-left"><h3>
-                                    <a target="_blank" href="https://www.youtube.com/channel/UC_UMEcP_kF0z4E6KbxCpV1w">
-                                    Youtube channel
-                                    </a>
-                                    </h3>
-                                   <a target="_blank" href="https://www.youtube.com/channel/UC_UMEcP_kF0z4E6KbxCpV1w">
-                                       Useful videos
-                                   </a> 
-                                   to improve your Javascript skills. Subscribe and stay tuned :)
-                                </td>
-                                <td class="unit">$0.00</td>
-                                <td class="qty">100</td>
-                                <td class="total">$0.00</td>
-                            </tr>
-                            <tr>
-                                <td class="no">01</td>
-                                <td class="text-left"><h3>Website Design</h3>Creating a recognizable design solution based on the company's existing visual identity</td>
-                                <td class="unit">$40.00</td>
-                                <td class="qty">30</td>
-                                <td class="total">$1,200.00</td>
-                            </tr>
-                            <tr>
-                                <td class="no">02</td>
-                                <td class="text-left"><h3>Website Development</h3>Developing a Content Management System-based Website</td>
-                                <td class="unit">$40.00</td>
-                                <td class="qty">80</td>
-                                <td class="total">$3,200.00</td>
-                            </tr>
-                            <tr>
-                                <td class="no">03</td>
-                                <td class="text-left"><h3>Search Engines Optimization</h3>Optimize the site for search engines (SEO)</td>
-                                <td class="unit">$40.00</td>
-                                <td class="qty">20</td>
-                                <td class="total">$800.00</td>
-                            </tr>
+                            <?php $c = 1; ?>
+                           
+                            @foreach ($packages as $package)
+                            
+                                <tr>
+                                    <td class="no"><?php echo $c++?></td>
+                                    <td class="text-left"><h3>
+                                        <a target="_blank" href="https://www.youtube.com/channel/UC_UMEcP_kF0z4E6KbxCpV1w">
+                                        {{$package->package_name}}
+                                        </a>
+                                        </h3>
+                                    {!! $package->package_description !!}
+                                    </td>
+                                    <td class="unit">${{$package->package_price}}</td>
+                                    <td class="qty">X</td>
+                                    <td class="qty">{{$booking->quantity}}</td>
+                                    <td class="qty">{{$booking->expected_date}}</td>
+                                    <td class="total">${{$package->package_price * $booking->quantity}}</td>
+                                </tr>
+                                
+                            @endforeach
                         </tbody>
                         <tfoot>
-                            <tr>
+                            <tr >
                                 <td colspan="2"></td>
                                 <td colspan="2">SUBTOTAL</td>
-                                <td>$5,200.00</td>
+                                <td>${{$price * $booking->quantity}}</td>
                             </tr>
-                            <tr>
+                            {{-- <tr>
                                 <td colspan="2"></td>
                                 <td colspan="2">TAX 25%</td>
                                 <td>$1,300.00</td>
-                            </tr>
+                            </tr> --}}
                             <tr>
                                 <td colspan="2"></td>
                                 <td colspan="2">GRAND TOTAL</td>
-                                <td>$6,500.00</td>
+                                <td>${{$price}}</td>
                             </tr>
                         </tfoot>
                     </table>
                     <div class="thanks">Thank you!</div>
                     <div class="notices">
                         <div>NOTICE:</div>
-                        <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+                        <div class="notice">We are so glady for choosing, we will make sure you will have a worderful tour.</div>
                     </div>
                 </main>
                 <footer>
-                    Invoice was created on a computer and is valid without the signature and seal.
+                    {{-- Invoice was created on a computer and is valid without the signature and seal. --}}
                 </footer>
             </div>
             <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
-            <div></div>
+            <div>
+                
+            </div>
         </div>
     </div>
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->

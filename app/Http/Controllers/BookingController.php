@@ -59,6 +59,7 @@ class BookingController extends Controller
         Validator::make($request->all(), [
             'full_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
             'quantity' => ['required', 'integer'],
             'booking_price' => ['required', 'integer'],
             'package' => ['required','array'],
@@ -71,6 +72,7 @@ class BookingController extends Controller
             'full_name' => $request['full_name'],
             'email' => $request['email'],
             'quantity' => $request['quantity'],
+            'address' => $request['address'],
             'package' => $request['package']['tour_name'],
             'booking_id' => $bookingId,
             'booking_price' => $request['booking_price'],
@@ -78,9 +80,9 @@ class BookingController extends Controller
             'short_memo' => $request['short_memo'],
         ]);
 
-        // $sent = Mail::to($booking->email)
-                    // ->bcc('info@zanauthentic.co.tz')
-                    // ->send(new TourBooked($booking));
+        $sent = Mail::to($booking->email)
+                    ->bcc('info@zanauthentic.co.tz')
+                    ->send(new TourBooked($booking));
 
        
 
@@ -107,7 +109,30 @@ class BookingController extends Controller
      */
     public function edit(Booking $booking)
     {
-        //
+        $tour = Tour::where('tour_name','=',$booking->package)->with('packages')->get();
+        foreach ($tour as $key => $date) 
+        {
+            $data['id'] = $date->id;
+            $data['tour_name'] = $date->tour_name;
+            $data['tour_description'] = $date->tour_description;
+            $data['tour_price'] = $date->tour_price;
+            $data['tour_photo_path'] = $date->tour_photo_path;
+
+            if ($date->packages) {
+                foreach ($date->packages as $key => $value) {
+                    if ($value->package_status = 'published') {
+                        $data['packages'][$key]['id'] = $value->id;
+                        $data['packages'][$key]['package_photo_path'] = $value->package_photo_path;
+                        $data['packages'][$key]['package_name'] = $value->package_name;
+                        $data['packages'][$key]['package_price'] = $value->package_price;
+                        $data['packages'][$key]['package_description'] = $value->package_description;
+                    }
+
+                }
+            }
+        }
+        // dd($data);
+        return Inertia::render('Booking/Edit', ['booking' => $booking, 'packages' => $data]);
     }
 
     /**
@@ -119,7 +144,35 @@ class BookingController extends Controller
      */
     public function update(Request $request, Booking $booking)
     {
-        //
+        Validator::make($request->all(), [
+            'full_name' => ['required', 'string', 'max:255'],
+            'booking_email' => ['required', 'string', 'email', 'max:255'],
+            'booking_quantity' => ['required', 'integer'],
+            'booking_price' => ['required', 'integer'],
+            'booking_status' => ['required', 'array'],
+            'booking_packages' => ['required', 'array'],
+            'booking_expected_date' => ['required', 'string', 'max:255'],
+            'booking_description' => ['required', 'string'],
+            'booking_address' => ['required', 'string'],
+        ])->validateWithBag('updatebooking');
+
+        $book = Booking::findOrFail($booking->id);
+
+        $book->full_name = $request->full_name;
+        $book->packages = $request->booking_packages;
+        $book->address = $request->booking_address;
+        $book->package = $request->booking_package;
+        $book->status = $request['booking_status']['value'];
+        $book->email = $request->booking_email;
+        $book->booking_price = $request->booking_price;
+        $book->quantity = $request->booking_quantity;
+        $book->short_memo = $request->booking_description;
+        $book->expected_date = $request->booking_expected_date;
+
+
+        if($book->update()){
+            return redirect()->back();
+        }
     }
 
     /**
@@ -130,12 +183,23 @@ class BookingController extends Controller
      */
     public function destroy(Booking $booking)
     {
-        //
+        $destroy = Booking::findOrFail($booking->id)->delete();
+       if ($destroy) {
+        return redirect()->back();
+       }
     }
 
     public function home_booking()
     {
         $tours = Tour::all();
         return Inertia::render('BookingPage',['tours' => $tours]);
+    }
+
+    public function changeTour(Request $request){
+        Validator::make($request->all(), [
+            'tour' => ['required','string'],
+        ])->validateWithBag('fetchpackages');
+
+        
     }
 }

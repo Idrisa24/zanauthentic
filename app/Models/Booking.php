@@ -35,6 +35,8 @@ class Booking extends Model
         'full_name',
         'email' ,
         'quantity',
+        'packages',
+        'address',
         'package',
         'booking_price',
         'booking_id',
@@ -44,7 +46,7 @@ class Booking extends Model
     ];
 
     protected $casts = [
-        'created_at' => 'datetime:d/m/Y H:m a',
+        'created_at' => 'datetime:d/m/Y',
     ];
 
 }

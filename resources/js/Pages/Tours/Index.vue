@@ -76,7 +76,7 @@
             </div>
             <el-table :data="tours" style="width: 100%">
               <el-table-column fixed prop="id" label="#ID" width="300"/>
-              <el-table-column prop="tour_name" label="Full Name" width="150" />
+              <el-table-column prop="tour_name" label="Tour's Name" width="150" />
               <el-table-column label="Description" width="300">
                 <template #default="scope">
                   <div class="line-clamp-3" v-html="scope.row.tour_description"></div>

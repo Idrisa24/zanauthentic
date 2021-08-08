@@ -174,8 +174,6 @@ class TourController extends Controller
             }
         }
         return Inertia::render('TourDetailPage', ['tour' => $data]);
-
-        // dd($tour);
     }
 
     public function deleteTourPhote(Tour $tour)
