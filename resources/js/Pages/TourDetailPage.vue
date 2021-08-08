@@ -35,7 +35,8 @@
             <p class="mb-4 lg:mb-6 leading-loose" v-html="pack.package_description" /> 
           </div>
           <div class="w-full lg:w-1/6 self-center text-xs px-3">
-            <a class="block mb-2 py-4 text-center hover:text-white font-semibold bg-blue-200 hover:bg-blue-600 rounded" :href="route('packages.details',{package:pack.id})">Price ${{pack.package_price}}</a>
+            <a v-if="pack.package_price >  0" class="block mb-2 py-4 text-center hover:text-white font-semibold bg-blue-200 hover:bg-blue-600 rounded" :href="route('packages.details',{package:pack.id})">Price ${{pack.package_price}}</a>
+            <a v-else class="block mb-2 py-4 text-center hover:text-white font-semibold bg-blue-200 hover:bg-blue-600 rounded" :href="route('packages.details',{package:pack.id})">Free</a>
             <p class="text-center text-blue-400">per person</p>
           </div>
         </div>
